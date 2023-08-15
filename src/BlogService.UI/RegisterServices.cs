@@ -1,4 +1,13 @@
-﻿using BlogService.Library.DataAccess;
+﻿// ============================================
+// Copyright (c) 2023. All rights reserved.
+// File Name :     RegisterServices.cs
+// Company :       mpaulosky
+// Author :        Matthew Paulosky
+// Solution Name : BlogServiceApp
+// Project Name :  BlogService.UI
+// =============================================
+
+using BlogService.Library.DataAccess;
 
 namespace BlogService.UI;
 

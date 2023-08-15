@@ -1,4 +1,13 @@
-﻿namespace BlogService.Library.Models;
+﻿// ============================================
+// Copyright (c) 2023. All rights reserved.
+// File Name :     BlogPostDto.cs
+// Company :       mpaulosky
+// Author :        Matthew Paulosky
+// Solution Name : BlogServiceApp
+// Project Name :  BlogService.Library
+// =============================================
+
+namespace BlogService.Library.Models;
 
 public class BlogPostDto
 {
@@ -37,5 +46,5 @@ public class BlogPostDto
 
 	public string Image { get; set; } = string.Empty;
 
-	public bool IsDeleted { get; set; } = false;
+	public bool IsDeleted { get; set; }
 }

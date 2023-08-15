@@ -1,4 +1,13 @@
-﻿namespace BlogService.Library.DataAccess;
+﻿// ============================================
+// Copyright (c) 2023. All rights reserved.
+// File Name :     CollectionNames.cs
+// Company :       mpaulosky
+// Author :        Matthew Paulosky
+// Solution Name : BlogServiceApp
+// Project Name :  BlogService.Library
+// =============================================
+
+namespace BlogService.Library.DataAccess;
 
 /// <summary>
 ///   CollectionNames class
@@ -15,6 +24,7 @@ public static class CollectionNames
 		return entityName switch
 		{
 			"BlogPost" => "posts",
+			"User" => "users",
 			_ => ""
 		};
 	}

@@ -28,8 +28,8 @@ else
 
 @code {
 
-	private bool _usersCreated = false;
-	private bool _blogsCreated = false;
+	private bool _usersCreated;
+	private bool _blogsCreated;
 
 	private async Task CreateUsers()
 	{
@@ -47,7 +47,6 @@ else
 			LastName = "Paulosky",
 			DisplayName = "mpaulosky",
 			EmailAddress = "matthew.paulosky@outlook.com"
-
 		};
 
 		await UserData.CreateUser(user);
@@ -78,4 +77,5 @@ else
 
 		_blogsCreated = true;
 	}
+
 }
