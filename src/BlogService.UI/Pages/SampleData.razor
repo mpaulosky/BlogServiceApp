@@ -1,0 +1,81 @@
+﻿@page "/SampleData"
+@using BlogService.Library.DataAccess
+@using BlogService.Library.Models
+
+@inject IBlogPostData BlogPostData
+@inject IUserData UserData
+
+<h3>Sample Data</h3>
+
+@if (_usersCreated)
+{
+	<h4>Users have been created</h4>
+}
+else
+{
+	<button class="btn btn-primary" @onclick="CreateUsers">Create User Data</button>
+}
+
+@if (_blogsCreated)
+{
+	<h4>Blog Posts have been created</h4>
+}
+else
+{
+	<button class="btn btn-primary" @onclick="CreateBlogPosts">Create Blog Post Data</button>
+}
+
+
+@code {
+
+	private bool _usersCreated = false;
+	private bool _blogsCreated = false;
+
+	private async Task CreateUsers()
+	{
+		var users = await UserData.GetUsersAsync();
+
+		if (users?.Count > 0)
+		{
+			_usersCreated = true;
+			return;
+		}
+
+		User user = new()
+		{
+			FirstName = "Matthew",
+			LastName = "Paulosky",
+			DisplayName = "mpaulosky",
+			EmailAddress = "matthew.paulosky@outlook.com"
+
+		};
+
+		await UserData.CreateUser(user);
+
+		_usersCreated = true;
+	}
+
+	private async Task CreateBlogPosts()
+	{
+		var posts = await BlogPostData.GetBlogPostsAsync();
+
+		if (posts?.Count > 0)
+		{
+			_blogsCreated = true;
+			return;
+		}
+
+		BlogPost post = new()
+		{
+			Author = "mpaulosky",
+			Content = "Test Content",
+			Description = "Test Description",
+			Title = "Test Title",
+			Created = DateTime.UtcNow
+		};
+
+		await BlogPostData.CreateBlogPost(post);
+
+		_blogsCreated = true;
+	}
+}

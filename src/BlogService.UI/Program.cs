@@ -1,8 +1,7 @@
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddRazorPages();
-builder.Services.AddServerSideBlazor();
+ConfigurationManager config = builder.Configuration;
+builder.ConfigureServices(config);
 
 var app = builder.Build();
 

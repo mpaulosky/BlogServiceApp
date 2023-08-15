@@ -1,9 +1,23 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UserSecretsId>49c62256-48d5-4902-8039-78e5d21277e0</UserSecretsId>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Folder Include="Components\" />
+		<Folder Include="wwwroot\images\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.Identity.Web" Version="2.13.2" />
+	  <PackageReference Include="Microsoft.Identity.Web.UI" Version="2.13.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\BlogService.Library\BlogService.Library.csproj" />
+	</ItemGroup>
 
 </Project>
