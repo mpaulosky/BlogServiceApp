@@ -7,7 +7,7 @@
 // Project Name :  BlogService.Library.Tests.Unit
 // =============================================
 
-namespace BlogService.Library.Tests.Unit.GivenBlogPostDto;
+namespace BlogService.Library.Tests.Unit.Mapping.GivenBlogPostDto;
 
 [ExcludeFromCodeCoverage]
 public class WhenRequiringABlogPost
@@ -17,6 +17,7 @@ public class WhenRequiringABlogPost
 	{
 		// Arrange
 		var expectedDto = BlogPostDtoCreator.GetNewBlogPostDto()!;
+		expectedDto.IsPublished = true;
 
 		// Act
 		var result = expectedDto.ToBlogPost();
@@ -24,23 +25,6 @@ public class WhenRequiringABlogPost
 		// Assert
 		result.Should().BeEquivalentTo(expectedDto,
 			options => options
-				.Excluding(t => t.Created)
-				.Excluding(t => t.IsPublished));
-	}
-
-	[Fact]
-	public void ShouldConvertBlogPostDtoToBlogPostWithNewSeed_Test()
-	{
-		// Arrange
-		var expectedDto = BlogPostDtoCreator.GetNewBlogPostDto(true)!;
-
-		// Act
-		var result = expectedDto.ToBlogPost();
-
-		// Assert
-		result.Should().BeEquivalentTo(expectedDto,
-			options => options
-				.Excluding(t => t.Created)
-				.Excluding(t => t.IsPublished));
+				.Excluding(t => t.Created));
 	}
 }

@@ -7,7 +7,7 @@
 // Project Name :  BlogService.Library.Tests.Unit
 // =============================================
 
-namespace BlogService.Library.Tests.Unit.GivenBlogPostCreator;
+namespace BlogService.Library.Tests.Unit.FakeCreators.GivenBlogPostCreator;
 
 [ExcludeFromCodeCoverage]
 public class WhenTestBlogPostRequired
