@@ -8,9 +8,10 @@
 // =============================================
 
 global using System.ComponentModel.DataAnnotations;
+global using BlogService.Library.Contracts;
+global using static BlogService.Library.DataAccess.CollectionNames;
 global using BlogService.Library.Models;
 global using Bogus;
-global using Microsoft.Extensions.Configuration;
 global using MongoDB.Bson;
 global using MongoDB.Bson.Serialization.Attributes;
 global using MongoDB.Driver;

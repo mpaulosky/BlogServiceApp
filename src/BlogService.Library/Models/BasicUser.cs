@@ -36,34 +36,12 @@ public class BasicUser
 	}
 
 	/// <summary>
-	///   Initializes a new instance of the <see cref="BasicUser" /> class.
-	/// </summary>
-	/// <param name="id">The identifier.</param>
-	/// <param name="emailAddress"></param>
-	/// <param name="displayName">The display name.</param>
-	/// <param name="firstName"></param>
-	/// <param name="lastName"></param>
-	public BasicUser(
-		string id,
-		string firstName,
-		string lastName,
-		string emailAddress,
-		string displayName) : this()
-	{
-		Id = id;
-		FirstName = firstName;
-		LastName = lastName;
-		EmailAddress = emailAddress;
-		DisplayName = displayName;
-	}
-
-	/// <summary>
 	///   Gets the identifier.
 	/// </summary>
 	/// <value>
 	///   The identifier.
 	/// </value>
-	public string Id { get; init; } = string.Empty;
+	public string Id { get; set; } = string.Empty;
 
 	/// <summary>
 	///   Gets or sets the first name.
