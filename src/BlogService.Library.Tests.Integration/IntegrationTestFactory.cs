@@ -34,7 +34,7 @@ public class IntegrationTestFactory : WebApplicationFactory<IAppMarker>, IAsyncL
 
 	public new async Task DisposeAsync()
 	{
-		// await DbContext.Client.DropDatabaseAsync(_databaseName);
+		await DbContext.Client.DropDatabaseAsync(_databaseName);
 		await _mongoDbContainer.DisposeAsync().ConfigureAwait(false);
 	}
 
