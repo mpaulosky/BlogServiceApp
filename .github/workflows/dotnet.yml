@@ -69,9 +69,11 @@ jobs:
       - run: |
           echo "FullSemVer: ${{ steps.gitversion.outputs.fullSemVer }}"
 
-      - name: Codecov
-        uses: codecov/codecov-action@v3.1.4
-
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        env: 
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        
       - name: Upload dotnet test results
         uses: actions/upload-artifact@v3
         with:
