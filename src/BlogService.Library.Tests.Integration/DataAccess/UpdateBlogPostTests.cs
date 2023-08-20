@@ -1,28 +1,29 @@
 ﻿// ============================================
 // Copyright (c) 2023. All rights reserved.
-// File Name :     GetBlogPostTests.cs
+// File Name :     UpdateBlogPostTests.cs
 // Company :       mpaulosky
 // Author :        Matthew Paulosky
-// Solution Name : IssueTracker
-// Project Name :  BlogService.UI.Tests.Integration
+// Solution Name : BlogServiceApp
+// Project Name :  BlogService.Library.Tests.Integration
 // =============================================
 
-namespace IssueTracker.PlugIns.DataAccess;
+namespace BlogService.Library.DataAccess;
 
 [ExcludeFromCodeCoverage]
 [Collection("Test Collection")]
-public class GetBlogPostTests : IAsyncLifetime
+public class UpdateBlogPostTests : IAsyncLifetime
 {
 	private const string CleanupValue = "posts";
 
 	private readonly IntegrationTestFactory _factory;
 	private readonly BlogPostService _sut;
 
-	public GetBlogPostTests(IntegrationTestFactory factory)
+	public UpdateBlogPostTests(IntegrationTestFactory factory)
 	{
 		_factory = factory;
 		IBlogPostData postData = _factory.Services.GetRequiredService<IBlogPostData>();
-		_sut = new BlogPostService(postData);	}
+		_sut = new BlogPostService(postData);
+	}
 
 	public Task InitializeAsync()
 	{
@@ -35,13 +36,15 @@ public class GetBlogPostTests : IAsyncLifetime
 	}
 
 	[Fact]
-	public async Task GetAsync_With_WithData_Should_ReturnAValidBlogPost_TestAsync()
+	public async Task UpdateAsync_With_ValidData_Should_UpdateTheBlogPost_Test()
 	{
 		// Arrange
 		BlogPost expected = BlogPostCreator.GetNewBlogPost(true);
 		await _sut.CreateAsync(expected);
 
 		// Act
+		expected.Title = "Updated";
+		await _sut.UpdateAsync(expected);
 		BlogPost result = await _sut.GetByUrlAsync(expected.Url);
 
 		// Assert
@@ -50,16 +53,15 @@ public class GetBlogPostTests : IAsyncLifetime
 			.Excluding(t => t.Updated));
 	}
 
-	[Theory]
-	[InlineData("62cf2ad6326e99d665759e5a")]
-	public async Task GetAsync_With_WithoutData_Should_ReturnNothing_TestAsync(string value)
+	[Fact]
+	public async Task UpdateAsync_With_WithInValidData_Should_ThrowArgumentNullException_Test()
 	{
 		// Arrange
 
 		// Act
-		BlogPost result = await _sut.GetByUrlAsync(value);
+		Func<Task> act = async () => await _sut.UpdateAsync(null);
 
 		// Assert
-		result.Should().BeNull();
+		await act.Should().ThrowAsync<NullReferenceException>();
 	}
 }

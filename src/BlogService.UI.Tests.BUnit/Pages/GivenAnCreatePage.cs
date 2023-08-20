@@ -1,4 +1,13 @@
-﻿namespace BlogService.UI.Tests.BUnit.Pages;
+﻿// ============================================
+// Copyright (c) 2023. All rights reserved.
+// File Name :     GivenAnCreatePage.cs
+// Company :       mpaulosky
+// Author :        Matthew Paulosky
+// Solution Name : BlogServiceApp
+// Project Name :  BlogService.UI.Tests.BUnit
+// =============================================
+
+namespace BlogService.UI.Tests.BUnit.Pages;
 
 [ExcludeFromCodeCoverage]
 public class GivenAnCreatePage : TestContext

@@ -1,4 +1,13 @@
-﻿using BlogService.UI.Components;
+﻿// ============================================
+// Copyright (c) 2023. All rights reserved.
+// File Name :     GivenNotAuthorizedComponent.cs
+// Company :       mpaulosky
+// Author :        Matthew Paulosky
+// Solution Name : BlogServiceApp
+// Project Name :  BlogService.UI.Tests.BUnit
+// =============================================
+
+using BlogService.UI.Components;
 
 namespace BlogService.UI.Tests.BUnit.Components;
 
@@ -46,7 +55,7 @@ public class GivenNotAuthorizedComponent : TestContext
 	public void LoadingComponentClickCloseButtonShouldNavigateToHome_Test()
 	{
 		// Arrange
-		const string expectedUrl= "http://localhost/";
+		const string expectedUrl = "http://localhost/";
 
 		// Act
 		var cut = ComponentUnderTest();

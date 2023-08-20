@@ -8,10 +8,11 @@
 // =============================================
 
 namespace BlogService.Library.Tests.Unit.Services.GivenAUserService;
+
 [ExcludeFromCodeCoverage]
 public class WhenRequiringAUserService
 {
-		private readonly Mock<IUserData> _mockData = new();
+	private readonly Mock<IUserData> _mockData = new();
 
 	private UserService SystemUnderTest()
 	{

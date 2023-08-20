@@ -1,28 +1,29 @@
 ﻿// ============================================
 // Copyright (c) 2023. All rights reserved.
-// File Name :     CreateUserTests.cs
+// File Name :     UpdateUserTests.cs
 // Company :       mpaulosky
 // Author :        Matthew Paulosky
-// Solution Name : IssueTracker
-// Project Name :  BlogService.UI.Tests.Integration
+// Solution Name : BlogServiceApp
+// Project Name :  BlogService.Library.Tests.Integration
 // =============================================
 
-namespace IssueTracker.PlugIns.DataAccess;
+namespace BlogService.Library.DataAccess;
 
 [ExcludeFromCodeCoverage]
 [Collection("Test Collection")]
-public class CreateUserTests : IAsyncLifetime
+public class UpdateUserTests : IAsyncLifetime
 {
 	private const string CleanupValue = "users";
 
 	private readonly IntegrationTestFactory _factory;
 	private readonly UserService _sut;
 
-	public CreateUserTests(IntegrationTestFactory factory)
+	public UpdateUserTests(IntegrationTestFactory factory)
 	{
 		_factory = factory;
 		IUserData userData = _factory.Services.GetRequiredService<IUserData>();
-		_sut = new UserService(userData);	}
+		_sut = new UserService(userData);
+	}
 
 	public Task InitializeAsync()
 	{
@@ -35,26 +36,30 @@ public class CreateUserTests : IAsyncLifetime
 	}
 
 	[Fact]
-	public async Task CreateAsync_With_ValidData_Should_CreateAUser_TestAsync()
+	public async Task UpdateAsync_With_ValidData_Should_UpdateTheUser_Test()
 	{
 		// Arrange
 		User expected = UserCreator.GetNewUser();
-
-		// Act
 		await _sut.CreateAsync(expected);
 
+		// Act
+		expected.DisplayName = "Updated";
+		await _sut.UpdateAsync(expected);
+		User result = await _sut.GetAsync(expected.Id);
+
 		// Assert
-		expected.Id.Should().NotBeNull();
+		result.Should().BeEquivalentTo(expected);
 	}
 
 	[Fact]
-	public async Task CreateAsync_With_InValidData_Should_FailToCreateAUser_TestAsync()
+	public async Task UpdateAsync_With_WithInValidData_Should_ThrowArgumentNullException_Test()
 	{
 		// Arrange
 
 		// Act
+		Func<Task> act = async () => await _sut.UpdateAsync(null!);
 
 		// Assert
-		await Assert.ThrowsAsync<ArgumentNullException>(() => _sut.CreateAsync(null!));
+		await act.Should().ThrowAsync<NullReferenceException>();
 	}
 }

@@ -1,10 +1,20 @@
-﻿namespace BlogService.UI.Tests.BUnit.Shared;
+﻿// ============================================
+// Copyright (c) 2023. All rights reserved.
+// File Name :     GivenBlogPostsComponent.cs
+// Company :       mpaulosky
+// Author :        Matthew Paulosky
+// Solution Name : BlogServiceApp
+// Project Name :  BlogService.UI.Tests.BUnit
+// =============================================
+
+namespace BlogService.UI.Tests.BUnit.Shared;
 
 [ExcludeFromCodeCoverage]
 public class GivenBlogPostsComponent : TestContext
 {
 	private readonly Mock<IBlogService> _blogServiceMock = new();
 	private List<BlogPost>? _expectedPosts = new();
+
 	private IRenderedComponent<BlogPosts> ComponentUnderTest()
 	{
 		IRenderedComponent<BlogPosts> component = RenderComponent<BlogPosts>();

@@ -4,12 +4,9 @@
 // Company :       mpaulosky
 // Author :        Matthew Paulosky
 // Solution Name : IssueTracker
-// Project Name :  BlogService.UI.Tests.Integration
-// =============================================
+// Project Name :  BlBlogService.Library.Tests.Integration/ =============================================
 
-using MongoDB.Bson;
-
-namespace IssueTracker.PlugIns.DataAccess;
+namespace BlogService.Library.DataAccess;
 
 [ExcludeFromCodeCoverage]
 [Collection("Test Collection")]

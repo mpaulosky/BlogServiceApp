@@ -8,6 +8,7 @@
 // =============================================
 
 namespace BlogService.UI.Pages;
+
 [UsedImplicitly]
 public partial class SampleData
 {

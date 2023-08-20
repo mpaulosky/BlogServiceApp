@@ -2,7 +2,7 @@
 
 @attribute [Authorize(Policy = "Admin")]
 @inject AuthenticationStateProvider AuthProvider
-@inject IUserService	UserService
+@inject IUserService UserService
 @inject NavigationManager NavManager
 
 <PageTitle>Admin</PageTitle>
@@ -35,4 +35,5 @@
 	{
 		NavManager.NavigateTo("/");
 	}
+
 }

@@ -11,7 +11,7 @@ namespace BlogService.Library.FakerCreators;
 
 public class BasicUserCreator
 {
-		/// <summary>
+	/// <summary>
 	///   Gets a new basic user.
 	/// </summary>
 	/// <param name="keepId">bool whether to keep the generated Id</param>
@@ -29,18 +29,19 @@ public class BasicUserCreator
 		return user;
 	}
 
-		/// <summary>
-		///   Gets a list of basic users.
-		/// </summary>
-		/// <param name="numberOfUsers">The number of users.</param>
-		/// <param name="useNewSeed">bool whether to use a seed other than 0</param>
-		/// <returns>A List of BasicUsers</returns>
-		public static List<BasicUser> GetBasicUsers(int numberOfUsers, bool useNewSeed = false)
-		{
-			List<BasicUser> users = GenerateFake(useNewSeed).Generate(numberOfUsers);
+	/// <summary>
+	///   Gets a list of basic users.
+	/// </summary>
+	/// <param name="numberOfUsers">The number of users.</param>
+	/// <param name="useNewSeed">bool whether to use a seed other than 0</param>
+	/// <returns>A List of BasicUsers</returns>
+	public static List<BasicUser> GetBasicUsers(int numberOfUsers, bool useNewSeed = false)
+	{
+		List<BasicUser> users = GenerateFake(useNewSeed).Generate(numberOfUsers);
 
-			return users;
-		}
+		return users;
+	}
+
 	/// <summary>
 	///   GenerateFake method
 	/// </summary>

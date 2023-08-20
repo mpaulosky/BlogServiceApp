@@ -1,54 +1,60 @@
 ﻿// ============================================
 // Copyright (c) 2023. All rights reserved.
-// File Name :     GetBlogPostTests.cs
+// File Name :     ArchiveBlogPostTests.cs
 // Company :       mpaulosky
 // Author :        Matthew Paulosky
 // Solution Name : IssueTracker
-// Project Name :  BlogService.UI.Tests.Integration
+// Project Name :  BlBlogService.Library.Tests.Integration
 // =============================================
 
-namespace IssueTracker.PlugIns.DataAccess;
+namespace BlogService.Library.DataAccess;
 
 [ExcludeFromCodeCoverage]
 [Collection("Test Collection")]
-public class GetBlogPostsTests : IAsyncLifetime
+public class ArchiveBlogPostTests : IAsyncLifetime
 {
 	private const string CleanupValue = "posts";
 
 	private readonly IntegrationTestFactory _factory;
 	private readonly BlogPostService _sut;
 
-	public GetBlogPostsTests(IntegrationTestFactory factory)
+	public ArchiveBlogPostTests(IntegrationTestFactory factory)
 	{
 		_factory = factory;
+		_factory.Services.GetRequiredService<IMongoDbContextFactory>();
 		IBlogPostData postData = _factory.Services.GetRequiredService<IBlogPostData>();
 		_sut = new BlogPostService(postData);
 	}
 
+	[Fact]
 	public Task InitializeAsync()
 	{
 		return Task.CompletedTask;
 	}
 
+	[Fact]
 	public async Task DisposeAsync()
 	{
 		await _factory.ResetCollectionAsync(CleanupValue);
 	}
 
-	[Fact]
-	public async Task GetAllAsync_With_ValidData_Should_ReturnBlogPost_Test()
+	[Fact(DisplayName = "Archive BlogPost With Valid Data (Archive)")]
+	public async Task ArchiveAsync_With_ValidData_Should_ArchiveABlogPost_TestAsync()
 	{
 		// Arrange
-		BlogPost expected = BlogPostCreator.GetNewBlogPost(true);
+		BlogPost expected = BlogPostCreator.GetNewBlogPost();
+		expected.IsDeleted = true;
+
 		await _sut.CreateAsync(expected);
 
 		// Act
-		List<BlogPost> results = (await _sut.GetAllAsync()).ToList();
+		await _sut.ArchiveAsync(expected);
+
+		BlogPost result = await _sut.GetByUrlAsync(expected.Url);
 
 		// Assert
-		results.Count.Should().Be(1);
-		results.First().Should().BeEquivalentTo(expected, options => options
-			.Excluding(x => x.Created)
-			.Excluding(t=> t.Updated));
+		result.Should().NotBeNull();
+		result.Id.Should().Be(expected.Id);
+		result.IsDeleted.Should().BeTrue();
 	}
 }

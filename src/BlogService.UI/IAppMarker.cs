@@ -11,5 +11,4 @@ namespace BlogService.UI;
 
 public interface IAppMarker
 {
-	
 }

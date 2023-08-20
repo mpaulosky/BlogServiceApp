@@ -8,6 +8,7 @@
 // =============================================
 
 namespace BlogService.Library.Tests.Unit.FakeCreators.GivenAUserCreator;
+
 [ExcludeFromCodeCoverage]
 public class WhenAUserIsRequired
 {

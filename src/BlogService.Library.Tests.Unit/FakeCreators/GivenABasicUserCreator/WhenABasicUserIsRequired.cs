@@ -1,6 +1,6 @@
 ﻿// ============================================
 // Copyright (c) 2023. All rights reserved.
-// File Name :     WhenAUserIsRequired.cs
+// File Name :     WhenABasicUserIsRequired.cs
 // Company :       mpaulosky
 // Author :        Matthew Paulosky
 // Solution Name : BlogServiceApp
@@ -8,6 +8,7 @@
 // =============================================
 
 namespace BlogService.Library.Tests.Unit.FakeCreators.GivenABasicUserCreator;
+
 [ExcludeFromCodeCoverage]
 public class WhenABasicUserIsRequired
 {

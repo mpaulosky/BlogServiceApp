@@ -3,8 +3,8 @@
 // File Name :     RegisterApplicationServices.cs
 // Company :       mpaulosky
 // Author :        Matthew Paulosky
-// Solution Name : IssueTracker
-// Project Name :  IssueTracker.UI
+// Solution Name : BlogServiceApp
+// Project Name :  BlogService.UI
 // =============================================
 
 namespace BlogService.UI.Registrations;

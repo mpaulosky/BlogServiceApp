@@ -1,13 +1,12 @@
 ﻿@page "/create"
+@using Markdig
 
 @attribute [Authorize]
-
-@using Markdig
 
 @inject AuthenticationStateProvider AuthProvider
 @inject NavigationManager NavigationManager
 @inject IBlogService BlogService
-@inject IUserService	UserService
+@inject IUserService UserService
 
 <PageTitle>Create</PageTitle>
 
@@ -42,7 +41,7 @@
 
 	<div class="form-group mb-2">
 		<label for="content">Content</label>
-		<InputTextArea id="content" class="form-control" @bind-Value="_newBlogPost.Content" />
+		<InputTextArea id="content" class="form-control" @bind-Value="_newBlogPost.Content"/>
 		<ValidationMessage For="@(() => _newBlogPost.Content)"/>
 	</div>
 

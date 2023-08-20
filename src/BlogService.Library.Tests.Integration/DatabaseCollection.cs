@@ -3,11 +3,11 @@
 // File Name :     DatabaseCollection.cs
 // Company :       mpaulosky
 // Author :        Matthew Paulosky
-// Solution Name : IssueTracker
-// Project Name :  BlogService.UI.Tests.Integration
+// Solution Name : BlogServiceApp
+// Project Name :  BlogService.Library.Tests.Integration
 // =============================================
 
-namespace IssueTracker.PlugIns;
+namespace BlogService.Library;
 
 [CollectionDefinition("Test Collection")]
 public class DatabaseCollection : ICollectionFixture<IntegrationTestFactory>

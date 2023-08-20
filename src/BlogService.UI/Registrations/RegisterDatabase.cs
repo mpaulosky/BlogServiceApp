@@ -1,6 +1,6 @@
 ﻿// ============================================
 // Copyright (c) 2023. All rights reserved.
-// File Name :     RegisterServices.cs
+// File Name :     RegisterDatabase.cs
 // Company :       mpaulosky
 // Author :        Matthew Paulosky
 // Solution Name : BlogServiceApp

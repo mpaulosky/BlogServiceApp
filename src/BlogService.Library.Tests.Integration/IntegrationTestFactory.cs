@@ -4,10 +4,10 @@
 // Company :       mpaulosky
 // Author :        Matthew Paulosky
 // Solution Name : IssueTracker
-// Project Name :  BlogService.UI.Tests.Integration
+// Project Name :  BlBlogService.Library.Tests.Integration
 // =============================================
 
-namespace IssueTracker.PlugIns;
+namespace BlogService.Library;
 
 [Collection("Test collection")]
 [ExcludeFromCodeCoverage]

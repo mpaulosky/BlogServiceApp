@@ -1,24 +1,24 @@
 ﻿// ============================================
 // Copyright (c) 2023. All rights reserved.
-// File Name :     CreateBlogPostTests.cs
+// File Name :     GetBlogPostTests.cs
 // Company :       mpaulosky
 // Author :        Matthew Paulosky
 // Solution Name : IssueTracker
-// Project Name :  BlogService.UI.Tests.Integration
+// Project Name :  BlBlogService.Library.Tests.Integration
 // =============================================
 
-namespace IssueTracker.PlugIns.DataAccess;
+namespace BlogService.Library.DataAccess;
 
 [ExcludeFromCodeCoverage]
 [Collection("Test Collection")]
-public class CreateBlogPostTests : IAsyncLifetime
+public class GetBlogPostTests : IAsyncLifetime
 {
 	private const string CleanupValue = "posts";
 
 	private readonly IntegrationTestFactory _factory;
 	private readonly BlogPostService _sut;
 
-	public CreateBlogPostTests(IntegrationTestFactory factory)
+	public GetBlogPostTests(IntegrationTestFactory factory)
 	{
 		_factory = factory;
 		IBlogPostData postData = _factory.Services.GetRequiredService<IBlogPostData>();
@@ -35,26 +35,31 @@ public class CreateBlogPostTests : IAsyncLifetime
 	}
 
 	[Fact]
-	public async Task CreateAsync_With_ValidData_Should_CreateABlogPost_TestAsync()
+	public async Task GetAsync_With_WithData_Should_ReturnAValidBlogPost_TestAsync()
 	{
 		// Arrange
-		BlogPost expected = BlogPostCreator.GetNewBlogPost();
-
-		// Act
+		BlogPost expected = BlogPostCreator.GetNewBlogPost(true);
 		await _sut.CreateAsync(expected);
 
+		// Act
+		BlogPost result = await _sut.GetByUrlAsync(expected.Url);
+
 		// Assert
-		expected.Id.Should().NotBeNull();
+		result.Should().BeEquivalentTo(expected, options => options
+			.Excluding(x => x.Created)
+			.Excluding(t => t.Updated));
 	}
 
-	[Fact]
-	public async Task CreateAsync_With_InValidData_Should_FailToCreateABlogPost_TestAsync()
+	[Theory]
+	[InlineData("62cf2ad6326e99d665759e5a")]
+	public async Task GetAsync_With_WithoutData_Should_ReturnNothing_TestAsync(string value)
 	{
 		// Arrange
 
 		// Act
+		BlogPost result = await _sut.GetByUrlAsync(value);
 
 		// Assert
-		await Assert.ThrowsAsync<ArgumentNullException>(() => _sut.CreateAsync(null!));
+		result.Should().BeNull();
 	}
 }

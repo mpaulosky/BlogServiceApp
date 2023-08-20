@@ -1,10 +1,10 @@
 ﻿// ============================================
 // Copyright (c) 2023. All rights reserved.
-// File Name :     FakeUser.cs
+// File Name :     UserCreator.cs
 // Company :       mpaulosky
 // Author :        Matthew Paulosky
-// Solution Name : IssueTracker
-// Project Name :  IssueTracker.CoreBusiness
+// Solution Name : BlogServiceApp
+// Project Name :  BlogService.Library
 // =============================================
 
 namespace BlogService.Library.FakerCreators;

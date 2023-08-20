@@ -1,24 +1,24 @@
 ﻿// ============================================
 // Copyright (c) 2023. All rights reserved.
-// File Name :     GetUserTests.cs
+// File Name :     CreateUserTests.cs
 // Company :       mpaulosky
 // Author :        Matthew Paulosky
 // Solution Name : IssueTracker
-// Project Name :  BlogService.UI.Tests.Integration
+// Project Name :  BlBlogService.Library.Tests.Integration
 // =============================================
 
-namespace IssueTracker.PlugIns.DataAccess;
+namespace BlogService.Library.DataAccess;
 
 [ExcludeFromCodeCoverage]
 [Collection("Test Collection")]
-public class GetUserTests : IAsyncLifetime
+public class CreateUserTests : IAsyncLifetime
 {
 	private const string CleanupValue = "users";
 
 	private readonly IntegrationTestFactory _factory;
 	private readonly UserService _sut;
 
-	public GetUserTests(IntegrationTestFactory factory)
+	public CreateUserTests(IntegrationTestFactory factory)
 	{
 		_factory = factory;
 		IUserData userData = _factory.Services.GetRequiredService<IUserData>();
@@ -35,29 +35,26 @@ public class GetUserTests : IAsyncLifetime
 	}
 
 	[Fact]
-	public async Task GetAsync_With_WithData_Should_ReturnAValidUser_TestAsync()
+	public async Task CreateAsync_With_ValidData_Should_CreateAUser_TestAsync()
 	{
 		// Arrange
 		User expected = UserCreator.GetNewUser();
-		await _sut.CreateAsync(expected);
 
 		// Act
-		User result = await _sut.GetAsync(expected.Id);
+		await _sut.CreateAsync(expected);
 
 		// Assert
-		result.Should().BeEquivalentTo(expected);
+		expected.Id.Should().NotBeNull();
 	}
 
-	[Theory]
-	[InlineData("62cf2ad6326e99d665759e5a")]
-	public async Task GetAsync_With_WithoutData_Should_ReturnNothing_TestAsync(string value)
+	[Fact]
+	public async Task CreateAsync_With_InValidData_Should_FailToCreateAUser_TestAsync()
 	{
 		// Arrange
 
 		// Act
-		User result = await _sut.GetAsync(value!);
 
 		// Assert
-		result.Should().BeNull();
+		await Assert.ThrowsAsync<ArgumentNullException>(() => _sut.CreateAsync(null!));
 	}
 }

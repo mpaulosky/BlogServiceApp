@@ -1,4 +1,13 @@
-﻿namespace BlogService.UI.Tests.BUnit.Shared;
+﻿// ============================================
+// Copyright (c) 2023. All rights reserved.
+// File Name :     GivenLoadingComponent.cs
+// Company :       mpaulosky
+// Author :        Matthew Paulosky
+// Solution Name : BlogServiceApp
+// Project Name :  BlogService.UI.Tests.BUnit
+// =============================================
+
+namespace BlogService.UI.Tests.BUnit.Shared;
 
 [ExcludeFromCodeCoverage]
 public class GivenLoadingComponent : TestContext
