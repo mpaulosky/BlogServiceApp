@@ -7,13 +7,17 @@
 // Project Name :  BlogService.Library
 // =============================================
 
-namespace BlogService.Library.DataAccess;
+namespace BlogService.Library.Contracts;
 
 public interface IBlogPostData
 {
-	Task CreateBlogPost(BlogPost post);
-	Task<BlogPost> GetBlogPostAsync(string id);
-	Task<BlogPost> GetBlogPostByUrlAsync(string url);
-	Task<List<BlogPost>> GetBlogPostsAsync();
-	Task UpdateBlogPost(BlogPost post);
+	Task ArchiveAsync(BlogPost post);
+
+	Task CreateAsync(BlogPost post);
+
+	Task<BlogPost> GetByUrlAsync(string url);
+
+	Task<List<BlogPost>> GetAllAsync();
+
+	Task UpdateAsync(BlogPost post);
 }

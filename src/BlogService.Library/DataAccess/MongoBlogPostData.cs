@@ -9,40 +9,76 @@
 
 namespace BlogService.Library.DataAccess;
 
+/// <summary>
+///   Data access implementation for MongoDB with BlogPost collection
+/// </summary>
 public class MongoBlogPostData : IBlogPostData
 {
 	private readonly IMongoCollection<BlogPost> _posts;
 
-	public MongoBlogPostData(IDbConnection db)
+	/// <summary>
+	///   MongoBlogPostData constructor
+	/// </summary>
+	/// <param name="context">IMongoDbContext</param>
+	/// <exception cref="ArgumentNullException"></exception>
+	public MongoBlogPostData(IMongoDbContextFactory context)
 	{
-		_posts = db.BlogPostCollection;
+		ArgumentNullException.ThrowIfNull(nameof(context));
+
+		string collectionName = GetCollectionName(nameof(BlogPost));
+
+		_posts = context.GetCollection<BlogPost>(collectionName);
 	}
 
-	public async Task<List<BlogPost>> GetBlogPostsAsync()
+	/// <summary>
+	///   Archives a BlogPost async
+	/// </summary>
+	/// <param name="post">The BlogPost object to be archived</param>
+	/// <returns>A task placeholder for the async operation</returns>
+	public Task ArchiveAsync(BlogPost post)
+	{
+		var filter = Builders<BlogPost>.Filter.Eq("Id", post.Id);
+		return _posts.ReplaceOneAsync(filter, post, new ReplaceOptions { IsUpsert = true });
+	}
+
+	/// <summary>
+	///   Creates a BlogPost async
+	/// </summary>
+	/// <param name="post">The BlogPost object to be created</param>
+	/// <returns>A task placeholder for the async operation</returns>
+	public Task CreateAsync(BlogPost post)
+	{
+		return _posts.InsertOneAsync(post);
+	}
+
+	/// <summary>
+	///   Gets all BlogPost objects async
+	/// </summary>
+	/// <returns>A List of all the BlogPost objects</returns>
+	public async Task<List<BlogPost>> GetAllAsync()
 	{
 		var results = await _posts.FindAsync(_ => true);
 
 		return results.ToList();
 	}
 
-	public async Task<BlogPost> GetBlogPostAsync(string id)
-	{
-		var results = await _posts.FindAsync(u => u.Id == id);
-		return results.FirstOrDefault();
-	}
-
-	public async Task<BlogPost> GetBlogPostByUrlAsync(string url)
+	/// <summary>
+	///   Gets a BlogPost object by looking up its URL async
+	/// </summary>
+	/// <param name="url">The URL of the BlogPost to look up</param>
+	/// <returns>The BlogPost corresponding to the URL provided or null if it doesn't exist</returns>
+	public async Task<BlogPost> GetByUrlAsync(string url)
 	{
 		var results = await _posts.FindAsync(u => u.Url == url);
 		return results.FirstOrDefault();
 	}
 
-	public Task CreateBlogPost(BlogPost post)
-	{
-		return _posts.InsertOneAsync(post);
-	}
-
-	public Task UpdateBlogPost(BlogPost post)
+	/// <summary>
+	///   Updates a BlogPost asynchronously
+	/// </summary>
+	/// <param name="post">The BlogPost object to be updated</param>
+	/// <returns>A task placeholder for the async operation</returns>
+	public Task UpdateAsync(BlogPost post)
 	{
 		var filter = Builders<BlogPost>.Filter.Eq("Id", post.Id);
 		return _posts.ReplaceOneAsync(filter, post, new ReplaceOptions { IsUpsert = true });

@@ -7,13 +7,19 @@
 // Project Name :  BlogService.Library
 // =============================================
 
-namespace BlogService.Library.DataAccess;
+namespace BlogService.Library.Contracts;
 
 public interface IUserData
 {
-	Task CreateUser(User user);
-	Task<User> GetUserAsync(string id);
-	Task<User> GetUserFromAuthenticationAsync(string objectId);
-	Task<List<User>> GetUsersAsync();
-	Task UpdateUser(User user);
+	Task ArchiveAsync(User user);
+
+	Task CreateAsync(User user);
+
+	Task<User> GetAsync(string id);
+
+	Task<User> GetFromAuthenticationAsync(string objectId);
+
+	Task<List<User>> GetAllAsync();
+
+	Task UpdateAsync(User user);
 }
