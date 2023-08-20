@@ -1,0 +1,24 @@
+---
+version: '3.8'
+
+networks:
+  issuetracker-network:
+
+services:
+  db:
+    image: mongo:latest
+    
+    container_name: my-mongodb
+
+    restart: always
+
+    environment:
+      - MONGO_INITDB_DATABASE=devblog
+      - MONGO_INITDB_ROOT_USERNAME=course
+      - MONGO_INITDB_ROOT_PASSWORD=whatever
+
+    ports:
+      - '27017:27017'
+
+    networks:
+      - blogservice-network
