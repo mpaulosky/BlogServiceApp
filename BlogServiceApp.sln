@@ -16,6 +16,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 Solution Items", "0 Solut
 		.gitignore = .gitignore
 		LICENSE.txt = LICENSE.txt
 		README.md = README.md
+		.dockerignore = .dockerignore
+		codecov.yml = codecov.yml
+		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlogService.Library.Tests.Unit", "src\BlogService.Library.Tests.Unit\BlogService.Library.Tests.Unit.csproj", "{24C0F4D2-D867-42F3-85B8-EB2F4B2FCF6D}"
