@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace BlogService.UI.Pages;
-
+[ExcludeFromCodeCoverage]
 [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 [IgnoreAntiforgeryToken]
 public class ErrorModel : PageModel
@@ -24,7 +24,7 @@ public class ErrorModel : PageModel
 		_logger = logger;
 	}
 
-	public string? RequestId { get; set; }
+	public string RequestId { get; set; }
 
 	public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
 

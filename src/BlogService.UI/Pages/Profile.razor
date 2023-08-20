@@ -1,0 +1,23 @@
+﻿@page "/Profile"
+
+@attribute [Authorize]
+@inject AuthenticationStateProvider AuthProvider
+@inject IUserService UserService
+@inject NavigationManager NavManager
+
+
+<PageTitle>Profile Page</PageTitle>
+
+ <h1 class="page-heading text-light text-uppercase mb-4">@_loggedInUser.DisplayName Profile</h1> 
+
+<div class="form-layout mb-3">
+	<div class="close-button-section">
+		<button id="close-page" class="btn btn-close" @onclick="ClosePage"></button>
+	</div>
+	<div class="form-layout mb-3">
+		@* <h2 class="my-issue-heading">@_loggedInUser?.DisplayName Account</h2> *@
+		<p class="my-issue-text">
+			<a href="MicrosoftIdentity/Account/EditProfile">Edit My Profile</a>
+		</p>
+	</div>
+</div>

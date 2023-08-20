@@ -1,0 +1,16 @@
+﻿@page "/posts/{url}"
+
+@using Markdig
+@inject IBlogService BlogService
+
+@if (_post is not null)
+{
+	<div class="post-img" style="background-image: url('@(_post.Image ?? PlaceholderImage)');"></div>
+	<h3>@_post!.Title</h3>
+	<div>@((MarkupString)Markdown.ToHtml(_post.Content))</div>
+}
+else
+{
+	<LoadingComponent />
+}
+

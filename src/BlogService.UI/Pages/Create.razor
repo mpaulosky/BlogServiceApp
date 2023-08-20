@@ -1,0 +1,73 @@
+﻿@page "/create"
+
+@attribute [Authorize]
+
+@using Markdig
+
+@inject AuthenticationStateProvider AuthProvider
+@inject NavigationManager NavigationManager
+@inject IBlogService BlogService
+@inject IUserService	UserService
+
+<PageTitle>Create</PageTitle>
+
+<h3>Create a New Blog Post</h3>
+
+<EditForm Model="@_newBlogPost" OnValidSubmit="CreateBlogPost">
+	<DataAnnotationsValidator/>
+	<ValidationSummary/>
+
+	<div class="form-group mb-2">
+		<label for="title">Title</label>
+		<InputText id="title" class="form-control" @bind-Value="_newBlogPost.Title"/>
+		<ValidationMessage For="@(() => _newBlogPost.Title)"/>
+	</div>
+
+	<div class="form-group mb-2">
+		<label for="url">Url</label>
+		<InputText id="url" class="form-control" @bind-Value="_newBlogPost.Url"/>
+		<ValidationMessage For="@(() => _newBlogPost.Url)"/>
+	</div>
+
+	<div class="form-control-file mb-2">
+		<label for="image">Image</label>
+		<InputFile id="image" OnChange="OnFileChange"></InputFile>
+	</div>
+
+	<div class="form-group mb-2">
+		<label for="description">Description</label>
+		<InputTextArea id="description" class="form-control" @bind-Value="_newBlogPost.Description"/>
+		<ValidationMessage For="@(() => _newBlogPost.Description)"/>
+	</div>
+
+	<div class="form-group mb-2">
+		<label for="content">Content</label>
+		<InputTextArea id="content" class="form-control" @bind-Value="_newBlogPost.Content" />
+		<ValidationMessage For="@(() => _newBlogPost.Content)"/>
+	</div>
+
+	<div class="form-group mb-2">
+		<label for="preview">Content Preview</label>
+		<div id="preview" class="form-group mb-2">
+			@((MarkupString)Markdown.ToHtml(_newBlogPost.Content))
+		</div>
+	</div>
+
+	<div class="form-group mb-2">
+		<label for="author">Author</label>
+		<InputText id="author" class="form-control" @bind-Value="_newBlogPost.Author"/>
+		<ValidationMessage For="@(() => _newBlogPost.Author)"/>
+	</div>
+
+	<div class="form-group mb-2">
+		<label for="date">Date Created</label>
+		<InputDate id="date" class="form-control" @bind-Value="_newBlogPost.Created"/>
+	</div>
+
+	<div class="form-check mb-2">
+		<InputCheckbox id="isPublished" @bind-Value="_newBlogPost.IsPublished" class="form-check-input"/>
+		<label for="isPublished">Publish</label>
+	</div>
+
+	<button id="submit" type="submit" class="btn btn-primary">Create</button>
+</EditForm>

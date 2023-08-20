@@ -1,0 +1,38 @@
+﻿@page "/Admin"
+
+@attribute [Authorize(Policy = "Admin")]
+@inject AuthenticationStateProvider AuthProvider
+@inject IUserService	UserService
+@inject NavigationManager NavManager
+
+<PageTitle>Admin</PageTitle>
+
+<h3>Admin</h3>
+
+<div class="form-layout mb-3">
+	<div class="close-button-section">
+		<button id="close-page" class="btn btn-close" @onclick="ClosePage"></button>
+	</div>
+	<div class="form-layout mb-3">
+	</div>
+</div>
+
+@code {
+	private User _loggedInUser;
+
+	/// <summary>
+	///   OnInitializedAsync event
+	/// </summary>
+	protected override async Task OnInitializedAsync()
+	{
+		_loggedInUser = await AuthProvider.GetUserFromAuth(UserService);
+	}
+
+	/// <summary>
+	///   ClosePage method
+	/// </summary>
+	private void ClosePage()
+	{
+		NavManager.NavigateTo("/");
+	}
+}

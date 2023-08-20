@@ -1,6 +1,4 @@
 ﻿@page "/SampleData"
-@using BlogService.Library.DataAccess
-@using BlogService.Library.Models
 
 @inject IBlogPostData BlogPostData
 @inject IUserData UserData
@@ -26,56 +24,3 @@ else
 }
 
 
-@code {
-
-	private bool _usersCreated;
-	private bool _blogsCreated;
-
-	private async Task CreateUsers()
-	{
-		var users = await UserData.GetUsersAsync();
-
-		if (users?.Count > 0)
-		{
-			_usersCreated = true;
-			return;
-		}
-
-		User user = new()
-		{
-			FirstName = "Matthew",
-			LastName = "Paulosky",
-			DisplayName = "mpaulosky",
-			EmailAddress = "matthew.paulosky@outlook.com"
-		};
-
-		await UserData.CreateUser(user);
-
-		_usersCreated = true;
-	}
-
-	private async Task CreateBlogPosts()
-	{
-		var posts = await BlogPostData.GetBlogPostsAsync();
-
-		if (posts?.Count > 0)
-		{
-			_blogsCreated = true;
-			return;
-		}
-
-		BlogPost post = new()
-		{
-			Author = "mpaulosky",
-			Content = "Test Content",
-			Description = "Test Description",
-			Title = "Test Title",
-			Created = DateTime.UtcNow
-		};
-
-		await BlogPostData.CreateBlogPost(post);
-
-		_blogsCreated = true;
-	}
-
-}
