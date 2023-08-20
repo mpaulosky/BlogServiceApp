@@ -11,14 +11,14 @@ namespace BlogService.Library.DataAccess;
 
 [ExcludeFromCodeCoverage]
 [Collection("Test Collection")]
-public class GetBlogPostTests : IAsyncLifetime
+public class GetBlogPostByUrlTests : IAsyncLifetime
 {
 	private const string CleanupValue = "posts";
 
 	private readonly IntegrationTestFactory _factory;
 	private readonly BlogPostService _sut;
 
-	public GetBlogPostTests(IntegrationTestFactory factory)
+	public GetBlogPostByUrlTests(IntegrationTestFactory factory)
 	{
 		_factory = factory;
 		IBlogPostData postData = _factory.Services.GetRequiredService<IBlogPostData>();
@@ -35,7 +35,7 @@ public class GetBlogPostTests : IAsyncLifetime
 	}
 
 	[Fact]
-	public async Task GetAsync_With_WithData_Should_ReturnAValidBlogPost_TestAsync()
+	public async Task GetByUrlAsync_With_WithData_Should_ReturnAValidBlogPost_TestAsync()
 	{
 		// Arrange
 		BlogPost expected = BlogPostCreator.GetNewBlogPost(true);
@@ -52,7 +52,7 @@ public class GetBlogPostTests : IAsyncLifetime
 
 	[Theory]
 	[InlineData("62cf2ad6326e99d665759e5a")]
-	public async Task GetAsync_With_WithoutData_Should_ReturnNothing_TestAsync(string value)
+	public async Task GetByUrlAsync_With_WithoutData_Should_ReturnNothing_TestAsync(string value)
 	{
 		// Arrange
 

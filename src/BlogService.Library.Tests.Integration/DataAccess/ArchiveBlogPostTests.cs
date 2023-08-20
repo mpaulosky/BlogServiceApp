@@ -26,13 +26,13 @@ public class ArchiveBlogPostTests : IAsyncLifetime
 		_sut = new BlogPostService(postData);
 	}
 
-	[Fact]
+
 	public Task InitializeAsync()
 	{
 		return Task.CompletedTask;
 	}
 
-	[Fact]
+
 	public async Task DisposeAsync()
 	{
 		await _factory.ResetCollectionAsync(CleanupValue);
