@@ -3,8 +3,9 @@
 // File Name :     MongoDbContextFactoryTests.cs
 // Company :       mpaulosky
 // Author :        Matthew Paulosky
-// Solution Name : IssueTracker
-// Project Name :  BlBlogService.Library.Tests.Integration/ =============================================
+// Solution Name : BlogServiceApp
+// Project Name :  BlogService.Library.Tests.Integration
+// =============================================
 
 namespace BlogService.Library.DataAccess;
 

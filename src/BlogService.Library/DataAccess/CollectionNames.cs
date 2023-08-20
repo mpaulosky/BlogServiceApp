@@ -14,18 +14,18 @@ namespace BlogService.Library.DataAccess;
 /// </summary>
 public static class CollectionNames
 {
-	/// <summary>
-	///   GetCollectionName method
-	/// </summary>
-	/// <param name="entityName">string</param>
-	/// <returns>string collection name</returns>
-	public static string GetCollectionName(string entityName)
+  /// <summary>
+  ///   GetCollectionName method
+  /// </summary>
+  /// <param name="entityName">string</param>
+  /// <returns>string collection name</returns>
+  public static string GetCollectionName(string entityName)
+  {
+	return entityName switch
 	{
-		return entityName switch
-		{
-			"BlogPost" => "posts",
-			"User" => "users",
-			_ => ""
-		};
-	}
+	  "BlogPost" => "posts",
+	  "User" => "users",
+	  _ => ""
+	};
+  }
 }

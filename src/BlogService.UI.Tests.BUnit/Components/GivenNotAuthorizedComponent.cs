@@ -14,19 +14,19 @@ namespace BlogService.UI.Tests.BUnit.Components;
 [ExcludeFromCodeCoverage]
 public class GivenNotAuthorizedComponent : TestContext
 {
-	private IRenderedComponent<NotAuthorized> ComponentUnderTest()
-	{
-		IRenderedComponent<NotAuthorized> component = RenderComponent<NotAuthorized>();
+  private IRenderedComponent<NotAuthorized> ComponentUnderTest()
+  {
+	IRenderedComponent<NotAuthorized> component = RenderComponent<NotAuthorized>();
 
-		return component;
-	}
+	return component;
+  }
 
-	[Fact]
-	public void LoadingComponentOnLoad_Test()
-	{
-		// Arrange
-		const string expected =
-			"""
+  [Fact]
+  public void LoadingComponentOnLoad_Test()
+  {
+	// Arrange
+	const string expected =
+		"""
 			<div class="row justify-content-center">
 			<div class="col-xl-8 col-lg-10 form-layout">
 			 <div class="row">
@@ -44,26 +44,26 @@ public class GivenNotAuthorizedComponent : TestContext
 			</div>
 			""";
 
-		// Act
-		var cut = ComponentUnderTest();
+	// Act
+	var cut = ComponentUnderTest();
 
-		// Assert
-		cut.MarkupMatches(expected);
-	}
+	// Assert
+	cut.MarkupMatches(expected);
+  }
 
-	[Fact]
-	public void LoadingComponentClickCloseButtonShouldNavigateToHome_Test()
-	{
-		// Arrange
-		const string expectedUrl = "http://localhost/";
+  [Fact]
+  public void LoadingComponentClickCloseButtonShouldNavigateToHome_Test()
+  {
+	// Arrange
+	const string expectedUrl = "http://localhost/";
 
-		// Act
-		var cut = ComponentUnderTest();
-		cut.Find("button").Click();
+	// Act
+	var cut = ComponentUnderTest();
+	cut.Find("button").Click();
 
-		// Assert
-		var navMan = Services.GetRequiredService<FakeNavigationManager>();
-		navMan.Uri.Should().NotBeNull();
-		navMan.Uri.Should().Be(expectedUrl);
-	}
+	// Assert
+	var navMan = Services.GetRequiredService<FakeNavigationManager>();
+	navMan.Uri.Should().NotBeNull();
+	navMan.Uri.Should().Be(expectedUrl);
+  }
 }

@@ -14,13 +14,13 @@ namespace BlogService.Library.Models;
 /// </summary>
 public class DatabaseSettings : IDatabaseSettings
 {
-	public DatabaseSettings(string connectionStrings, string databaseName)
-	{
-		ConnectionStrings = connectionStrings;
-		DatabaseName = databaseName;
-	}
+  public DatabaseSettings(string connectionStrings, string databaseName)
+  {
+	ConnectionStrings = connectionStrings;
+	DatabaseName = databaseName;
+  }
 
-	public string ConnectionStrings { get; init; }
+  public string ConnectionStrings { get; init; }
 
-	public string DatabaseName { get; init; }
+  public string DatabaseName { get; init; }
 }

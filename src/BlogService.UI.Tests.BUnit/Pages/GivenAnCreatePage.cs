@@ -12,24 +12,24 @@ namespace BlogService.UI.Tests.BUnit.Pages;
 [ExcludeFromCodeCoverage]
 public class GivenAnCreatePage : TestContext
 {
-	private readonly Mock<IBlogPostData> _blogPostDataMock = new();
-	private readonly Mock<IUserData> _userDataMock = new();
-	private User _expectedUser = new();
-	private BlogPost? _expectedPost = new();
+  private readonly Mock<IBlogPostData> _blogPostDataMock = new();
+  private readonly Mock<IUserData> _userDataMock = new();
+  private User _expectedUser = new();
+  private BlogPost? _expectedPost = new();
 
-	private IRenderedComponent<Create> ComponentUnderTest()
-	{
-		IRenderedComponent<Create> component = RenderComponent<Create>();
+  private IRenderedComponent<Create> ComponentUnderTest()
+  {
+	IRenderedComponent<Create> component = RenderComponent<Create>();
 
-		return component;
-	}
+	return component;
+  }
 
-	[Fact]
-	public void Create_OnLoad_Should_DisplayPage_Test()
-	{
-		// Arrange
-		const string expectedHtml =
-			"""
+  [Fact]
+  public void Create_OnLoad_Should_DisplayPage_Test()
+  {
+	// Arrange
+	const string expectedHtml =
+		"""
 			<h3>Create a New Blog Post</h3>
 			<form >
 			  <div class="form-group mb-2">
@@ -72,55 +72,55 @@ public class GivenAnCreatePage : TestContext
 			</form>
 			""";
 
-		SetupMocks();
-		RegisterServices();
-		SetAuthenticationAndAuthorization(true, true);
+	SetupMocks();
+	RegisterServices();
+	SetAuthenticationAndAuthorization(true, true);
 
-		// Act
-		IRenderedComponent<Create> cut = ComponentUnderTest();
+	// Act
+	IRenderedComponent<Create> cut = ComponentUnderTest();
 
-		// Assert
-		cut.MarkupMatches(expectedHtml);
-	}
+	// Assert
+	cut.MarkupMatches(expectedHtml);
+  }
 
-	[Fact]
-	public void Create_With_ValidInput_Should_SaveNewBlog_Test()
-	{
-		// Arrange
-		_expectedPost = BlogPostCreator.GetNewBlogPost();
+  [Fact]
+  public void Create_With_ValidInput_Should_SaveNewBlog_Test()
+  {
+	// Arrange
+	_expectedPost = BlogPostCreator.GetNewBlogPost();
 
-		SetupMocks();
-		RegisterServices();
-		SetAuthenticationAndAuthorization(true, true);
+	SetupMocks();
+	RegisterServices();
+	SetAuthenticationAndAuthorization(true, true);
 
-		// Act
-		IRenderedComponent<Create> cut = ComponentUnderTest();
+	// Act
+	IRenderedComponent<Create> cut = ComponentUnderTest();
 
-		cut.Find("#title").Change(_expectedPost.Title);
-		cut.Find("#url").Change(_expectedPost.Url);
-		cut.Find("#description").Change(_expectedPost.Description);
-		cut.Find("#content").Change(_expectedPost.Content);
-		cut.Find("#author").Change(_expectedPost.Author);
-		cut.Find("#date").Change(DateTime.Now);
-		cut.Find("#submit").Click();
+	cut.Find("#title").Change(_expectedPost.Title);
+	cut.Find("#url").Change(_expectedPost.Url);
+	cut.Find("#description").Change(_expectedPost.Description);
+	cut.Find("#content").Change(_expectedPost.Content);
+	cut.Find("#author").Change(_expectedPost.Author);
+	cut.Find("#date").Change(DateTime.Now);
+	cut.Find("#submit").Click();
 
-		// Assert
-		_blogPostDataMock
-			.Verify(x =>
-				x.CreateAsync(It.IsAny<BlogPost>()), Times.Once);
+	// Assert
+	_blogPostDataMock
+		.Verify(x =>
+			x.CreateAsync(It.IsAny<BlogPost>()), Times.Once);
 
-		var navMan = Services.GetRequiredService<FakeNavigationManager>();
+	var navMan = Services.GetRequiredService<FakeNavigationManager>();
 
-		navMan.Uri.Should().NotBeNull();
-		navMan.Uri.Should().Be($"http://localhost/posts/{_expectedPost.Url}");
-	}
+	navMan.Uri.Should().NotBeNull();
+	navMan.Uri.Should().Be($"http://localhost/posts/{_expectedPost.Url}");
+  }
 
-	[Fact]
-	public void Create_With_InValidInput_Should_ShowValidationErrors_Test()
-	{
-		// Arrange
-		const string expectedHtml =
-			"""
+  [Fact]
+  public void Create_With_InValidInput_Should_ShowValidationErrors_Test()
+  {
+	// Arrange
+	const string expectedHtml =
+		"""
 			<h3>Create a New Blog Post</h3>
 			<form >
 			  <ul class="validation-errors">
@@ -175,51 +175,51 @@ public class GivenAnCreatePage : TestContext
 			</form>
 			""";
 
-		SetupMocks();
-		RegisterServices();
-		SetAuthenticationAndAuthorization(true, true);
+	SetupMocks();
+	RegisterServices();
+	SetAuthenticationAndAuthorization(true, true);
 
-		// Act
-		IRenderedComponent<Create> cut = ComponentUnderTest();
+	// Act
+	IRenderedComponent<Create> cut = ComponentUnderTest();
 
-		cut.Find("#submit").Click();
+	cut.Find("#submit").Click();
 
-		// Assert
-		cut.MarkupMatches(expectedHtml);
-	}
+	// Assert
+	cut.MarkupMatches(expectedHtml);
+  }
 
-	private void SetupMocks()
+  private void SetupMocks()
+  {
+	_blogPostDataMock.Setup(x => x
+			.GetByUrlAsync(It.IsAny<string>()))
+		.ReturnsAsync(_expectedPost);
+
+	_userDataMock.Setup(x => x
+			.GetFromAuthenticationAsync(It.IsAny<string>()))
+		.ReturnsAsync(_expectedUser);
+  }
+
+  private void SetAuthenticationAndAuthorization(bool isAdmin, bool isAuth)
+  {
+	TestAuthorizationContext authContext = this.AddTestAuthorization();
+
+	if (isAuth)
 	{
-		_blogPostDataMock.Setup(x => x
-				.GetByUrlAsync(It.IsAny<string>()))
-			.ReturnsAsync(_expectedPost);
-
-		_userDataMock.Setup(x => x
-				.GetFromAuthenticationAsync(It.IsAny<string>()))
-			.ReturnsAsync(_expectedUser);
+	  authContext.SetAuthorized(_expectedUser.DisplayName);
+	  authContext.SetClaims(
+		  new Claim("objectidentifier", _expectedUser.Id)
+	  );
 	}
 
-	private void SetAuthenticationAndAuthorization(bool isAdmin, bool isAuth)
+	if (isAdmin)
 	{
-		TestAuthorizationContext authContext = this.AddTestAuthorization();
-
-		if (isAuth)
-		{
-			authContext.SetAuthorized(_expectedUser.DisplayName);
-			authContext.SetClaims(
-				new Claim("objectidentifier", _expectedUser.Id)
-			);
-		}
-
-		if (isAdmin)
-		{
-			authContext.SetPolicies("Admin");
-		}
+	  authContext.SetPolicies("Admin");
 	}
+  }
 
-	private void RegisterServices()
-	{
-		Services.AddSingleton<IBlogService>(new BlogPostService(_blogPostDataMock.Object));
-		Services.AddSingleton<IUserService>(new UserService(_userDataMock.Object));
-	}
+  private void RegisterServices()
+  {
+	Services.AddSingleton<IBlogService>(new BlogPostService(_blogPostDataMock.Object));
+	Services.AddSingleton<IUserService>(new UserService(_userDataMock.Object));
+  }
 }

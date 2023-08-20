@@ -12,7 +12,8 @@ namespace BlogService.Library.Tests.Unit.FakeCreators.GivenBlogPostDtoCreator;
 [ExcludeFromCodeCoverage]
 public class WhenTestBlogPostDtoRequired
 {
-	[Fact] public void ShouldReturnNewBlogPostDtoWithSameSeed_Test()
+	[Fact]
+	public void ShouldReturnNewBlogPostDtoWithSameSeed_Test()
 	{
 		// Arrange
 		var expected = BlogPostDtoCreator.GetNewBlogPostDto()!;

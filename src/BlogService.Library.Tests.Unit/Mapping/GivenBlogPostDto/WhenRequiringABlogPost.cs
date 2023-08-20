@@ -12,19 +12,19 @@ namespace BlogService.Library.Tests.Unit.Mapping.GivenBlogPostDto;
 [ExcludeFromCodeCoverage]
 public class WhenRequiringABlogPost
 {
-	[Fact]
-	public void ShouldConvertBlogPostDtoToBlogPost_Test()
-	{
-		// Arrange
-		var expectedDto = BlogPostDtoCreator.GetNewBlogPostDto()!;
-		expectedDto.IsPublished = true;
+  [Fact]
+  public void ShouldConvertBlogPostDtoToBlogPost_Test()
+  {
+	// Arrange
+	var expectedDto = BlogPostDtoCreator.GetNewBlogPostDto()!;
+	expectedDto.IsPublished = true;
 
-		// Act
-		var result = expectedDto.ToBlogPost();
+	// Act
+	var result = expectedDto.ToBlogPost();
 
-		// Assert
-		result.Should().BeEquivalentTo(expectedDto,
-			options => options
-				.Excluding(t => t.Created));
-	}
+	// Assert
+	result.Should().BeEquivalentTo(expectedDto,
+		options => options
+			.Excluding(t => t.Created));
+  }
 }

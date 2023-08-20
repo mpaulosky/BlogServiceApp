@@ -1,6 +1,6 @@
 ﻿// ============================================
 // Copyright (c) 2023. All rights reserved.
-// File Name :     GetUserTests.cs
+// File Name :     GetUserByAuthenticationTests.cs
 // Company :       mpaulosky
 // Author :        Matthew Paulosky
 // Solution Name : BlogServiceApp

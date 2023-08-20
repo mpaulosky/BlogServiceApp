@@ -16,21 +16,21 @@ namespace BlogService.UI.Pages;
 [UsedImplicitly]
 public partial class Profile
 {
-	private User _loggedInUser;
+  private User _loggedInUser;
 
-	/// <summary>
-	///   OnInitializedAsync event
-	/// </summary>
-	protected override async Task OnInitializedAsync()
-	{
-		_loggedInUser = await AuthProvider.GetUserFromAuth(UserService);
-	}
+  /// <summary>
+  ///   OnInitializedAsync event
+  /// </summary>
+  protected override async Task OnInitializedAsync()
+  {
+	_loggedInUser = await AuthProvider.GetUserFromAuth(UserService);
+  }
 
-	/// <summary>
-	///   ClosePage method
-	/// </summary>
-	private void ClosePage()
-	{
-		NavManager.NavigateTo("/");
-	}
+  /// <summary>
+  ///   ClosePage method
+  /// </summary>
+  private void ClosePage()
+  {
+	NavManager.NavigateTo("/");
+  }
 }

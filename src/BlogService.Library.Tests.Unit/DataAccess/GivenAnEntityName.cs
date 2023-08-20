@@ -12,13 +12,13 @@ namespace BlogService.Library.Tests.Unit.DataAccess;
 [ExcludeFromCodeCoverage]
 public class GivenAnEntityName
 {
-	[Theory]
-	[InlineData("BlogPost", "posts")]
-	[InlineData("User", "users")]
-	[InlineData("", "")]
-	public void GetCollectionName_ShouldReturnCollectionName(string entityName, string expected)
-	{
-		var actual = CollectionNames.GetCollectionName(entityName);
-		Assert.Equal(expected, actual);
-	}
+  [Theory]
+  [InlineData("BlogPost", "posts")]
+  [InlineData("User", "users")]
+  [InlineData("", "")]
+  public void GetCollectionName_ShouldReturnCollectionName(string entityName, string expected)
+  {
+	var actual = CollectionNames.GetCollectionName(entityName);
+	Assert.Equal(expected, actual);
+  }
 }

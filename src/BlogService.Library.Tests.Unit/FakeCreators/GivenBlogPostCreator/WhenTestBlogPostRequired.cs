@@ -12,85 +12,85 @@ namespace BlogService.Library.Tests.Unit.FakeCreators.GivenBlogPostCreator;
 [ExcludeFromCodeCoverage]
 public class WhenTestBlogPostRequired
 {
-	[Fact]
-	public void ShouldReturnNewBlogPostWithoutId_Test()
-	{
-		// Arrange
-		var expected = BlogPostCreator.GetNewBlogPost()!;
+  [Fact]
+  public void ShouldReturnNewBlogPostWithoutId_Test()
+  {
+	// Arrange
+	var expected = BlogPostCreator.GetNewBlogPost()!;
 
-		// Act
-		var result = BlogPostCreator.GetNewBlogPost();
+	// Act
+	var result = BlogPostCreator.GetNewBlogPost();
 
-		// Assert
-		result.Should().BeEquivalentTo(expected,
-			options => options
-				.Excluding(t => t.Created)
-				.Excluding(t => t.Updated));
-	}
+	// Assert
+	result.Should().BeEquivalentTo(expected,
+		options => options
+			.Excluding(t => t.Created)
+			.Excluding(t => t.Updated));
+  }
 
-	[Fact]
-	public void ShouldReturnNewBlogPostWithId_Test()
-	{
-		// Arrange
-		var expected = BlogPostCreator.GetNewBlogPost(true)!;
+  [Fact]
+  public void ShouldReturnNewBlogPostWithId_Test()
+  {
+	// Arrange
+	var expected = BlogPostCreator.GetNewBlogPost(true)!;
 
-		// Act
-		var result = BlogPostCreator.GetNewBlogPost(true);
+	// Act
+	var result = BlogPostCreator.GetNewBlogPost(true);
 
-		// Assert
+	// Assert
 
-		result.Should().BeEquivalentTo(expected,
-			options => options
-				.Excluding(t => t.Id)
-				.Excluding(t => t.Created)
-				.Excluding(t => t.Updated));
-	}
+	result.Should().BeEquivalentTo(expected,
+		options => options
+			.Excluding(t => t.Id)
+			.Excluding(t => t.Created)
+			.Excluding(t => t.Updated));
+  }
 
-	[Fact]
-	public void ShouldReturnDifferentNewBlogPostWhenNewSeedIsTrue_Test()
-	{
-		// Arrange
-		var expected = BlogPostCreator.GetNewBlogPost(true)!;
+  [Fact]
+  public void ShouldReturnDifferentNewBlogPostWhenNewSeedIsTrue_Test()
+  {
+	// Arrange
+	var expected = BlogPostCreator.GetNewBlogPost(true)!;
 
-		// Act
-		var result = BlogPostCreator.GetNewBlogPost(true, true);
+	// Act
+	var result = BlogPostCreator.GetNewBlogPost(true, true);
 
-		// Assert
-		result.Should().NotBeEquivalentTo(expected);
-	}
+	// Assert
+	result.Should().NotBeEquivalentTo(expected);
+  }
 
-	[Fact]
-	public void ShouldReturnAListOfNewBlogPosts_Test()
-	{
-		// Arrange
-		var expected = BlogPostCreator.GetNewBlogPosts(3)!;
+  [Fact]
+  public void ShouldReturnAListOfNewBlogPosts_Test()
+  {
+	// Arrange
+	var expected = BlogPostCreator.GetNewBlogPosts(3)!;
 
-		// Act
-		IEnumerable<BlogPost> result = BlogPostCreator.GetNewBlogPosts(3);
+	// Act
+	IEnumerable<BlogPost> result = BlogPostCreator.GetNewBlogPosts(3);
 
-		// Assert
-		result.Should().BeEquivalentTo(expected,
-			options => options
-				.Excluding(t => t.Created)
-				.Excluding(t => t.Updated));
-	}
+	// Assert
+	result.Should().BeEquivalentTo(expected,
+		options => options
+			.Excluding(t => t.Created)
+			.Excluding(t => t.Updated));
+  }
 
-	[Fact]
-	public void ShouldReturnAListOfBlogPosts_Test()
-	{
-		// Arrange
-		var expected = BlogPostCreator.GetBlogPosts(3)!;
+  [Fact]
+  public void ShouldReturnAListOfBlogPosts_Test()
+  {
+	// Arrange
+	var expected = BlogPostCreator.GetBlogPosts(3)!;
 
-		// Act
-		IEnumerable<BlogPost> result = BlogPostCreator.GetBlogPosts(3).ToList();
+	// Act
+	IEnumerable<BlogPost> result = BlogPostCreator.GetBlogPosts(3).ToList();
 
-		// Assert
-		result.First().Created.Should().BeBefore(DateTime.Today);
-		result.First().Updated.Should().BeBefore(DateTime.Today);
-		result.Should().BeEquivalentTo(expected,
-			options => options
-				.Excluding(t => t.Id)
-				.Excluding(t => t.Created)
-				.Excluding(t => t.Updated));
-	}
+	// Assert
+	result.First().Created.Should().BeBefore(DateTime.Today);
+	result.First().Updated.Should().BeBefore(DateTime.Today);
+	result.Should().BeEquivalentTo(expected,
+		options => options
+			.Excluding(t => t.Id)
+			.Excluding(t => t.Created)
+			.Excluding(t => t.Updated));
+  }
 }

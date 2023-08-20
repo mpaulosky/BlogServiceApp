@@ -11,8 +11,8 @@ namespace BlogService.UI.Components;
 
 public partial class NotAuthorized
 {
-	/// <summary>
-	///   Closes the page method.
-	/// </summary>
-	private void ClosePage() { NavManager.NavigateTo("/"); }
+  /// <summary>
+  ///   Closes the page method.
+  /// </summary>
+  private void ClosePage() { NavManager.NavigateTo("/"); }
 }

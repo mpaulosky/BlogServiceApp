@@ -3,8 +3,8 @@
 // File Name :     DatabaseSettingsTests.cs
 // Company :       mpaulosky
 // Author :        Matthew Paulosky
-// Solution Name : IssueTracker
-// Project Name :  IssueTracker.CoreBusiness.Tests.Unit
+// Solution Name : BlogServiceApp
+// Project Name :  BlogService.Library.Tests.Unit
 // =============================================
 
 namespace BlogService.Library.Tests.Unit.Models;

@@ -12,27 +12,27 @@ namespace BlogService.UI.Tests.BUnit.Pages;
 [ExcludeFromCodeCoverage]
 public class GivenAnPostsPage : TestContext
 {
-	private readonly Mock<IBlogPostData> _blogPostDataMock = new();
-	private readonly Mock<IUserData> _userDataMock = new();
-	private User _expectedUser = new();
-	private BlogPost? _expectedPost = new();
+  private readonly Mock<IBlogPostData> _blogPostDataMock = new();
+  private readonly Mock<IUserData> _userDataMock = new();
+  private User _expectedUser = new();
+  private BlogPost? _expectedPost = new();
 
-	private IRenderedComponent<Posts> ComponentUnderTest(string? url)
+  private IRenderedComponent<Posts> ComponentUnderTest(string? url)
+  {
+	IRenderedComponent<Posts> component = RenderComponent<Posts>(parameter =>
 	{
-		IRenderedComponent<Posts> component = RenderComponent<Posts>(parameter =>
-		{
-			parameter.Add(p => p.Url, url);
-		});
+	  parameter.Add(p => p.Url, url);
+	});
 
-		return component;
-	}
+	return component;
+  }
 
-	[Fact()]
-	public void Posts_With_ValidData_Should_DisplayData_Test()
-	{
-		// Arrange
-		const string expected =
-			"""
+  [Fact()]
+  public void Posts_With_ValidData_Should_DisplayData_Test()
+  {
+	// Arrange
+	const string expected =
+		"""
 			<div class="post-img" style="background-image: url('https://picsum.photos/1060/300/?image=12');"></div>
 			<h3 diff:ignore>Iste quia natus et dignissimos reiciendis ad nostrum totam harum.</h3>
 			<div>
@@ -48,74 +48,74 @@ public class GivenAnPostsPage : TestContext
 			  <p diff:ignore>Voluptas amet voluptatem et officia voluptates. Possimus temporibus sed aut laborum. Sunt illum et labore autem deserunt nam vitae. Asperiores nesciunt deleniti veritatis voluptatem maiores eaque.</p>
 			</div>
 			""";
-		_expectedUser = UserCreator.GetNewUser(true);
-		_expectedPost = BlogPostCreator.GetBlogPosts(1).ToList().First();
+	_expectedUser = UserCreator.GetNewUser(true);
+	_expectedPost = BlogPostCreator.GetBlogPosts(1).ToList().First();
 
-		SetupMocks();
-		RegisterServices();
-		SetAuthenticationAndAuthorization(true, true);
+	SetupMocks();
+	RegisterServices();
+	SetAuthenticationAndAuthorization(true, true);
 
-		// Act
-		var cut = ComponentUnderTest(_expectedPost.Url);
+	// Act
+	var cut = ComponentUnderTest(_expectedPost.Url);
 
-		// Assert
-		cut.MarkupMatches(expected);
-	}
+	// Assert
+	cut.MarkupMatches(expected);
+  }
 
-	[Fact()]
-	public void Posts_With_NoData_Should_DisplayNoData_Test()
-	{
-		// Arrange
-		const string expected =
-			"""
+  [Fact()]
+  public void Posts_With_NoData_Should_DisplayNoData_Test()
+  {
+	// Arrange
+	const string expected =
+		"""
 			<div class="post-img" style="background-image: url('');"></div>
 			<h3></h3>
 			<div></div>
 			""";
-		_expectedUser = UserCreator.GetNewUser(true);
-		SetupMocks();
-		RegisterServices();
-		SetAuthenticationAndAuthorization(true, true);
+	_expectedUser = UserCreator.GetNewUser(true);
+	SetupMocks();
+	RegisterServices();
+	SetAuthenticationAndAuthorization(true, true);
 
-		// Act
-		var cut = ComponentUnderTest(string.Empty);
+	// Act
+	var cut = ComponentUnderTest(string.Empty);
 
-		// Assert
-		cut.MarkupMatches(expected);
-	}
+	// Assert
+	cut.MarkupMatches(expected);
+  }
 
-	private void SetupMocks()
+  private void SetupMocks()
+  {
+	_blogPostDataMock.Setup(x => x
+			.GetByUrlAsync(It.IsAny<string>()))
+		.ReturnsAsync(_expectedPost);
+
+	_userDataMock.Setup(x => x
+			.GetFromAuthenticationAsync(It.IsAny<string>()))
+		.ReturnsAsync(_expectedUser);
+  }
+
+  private void SetAuthenticationAndAuthorization(bool isAdmin, bool isAuth)
+  {
+	TestAuthorizationContext authContext = this.AddTestAuthorization();
+
+	if (isAuth)
 	{
-		_blogPostDataMock.Setup(x => x
-				.GetByUrlAsync(It.IsAny<string>()))
-			.ReturnsAsync(_expectedPost);
-
-		_userDataMock.Setup(x => x
-				.GetFromAuthenticationAsync(It.IsAny<string>()))
-			.ReturnsAsync(_expectedUser);
+	  authContext.SetAuthorized(_expectedUser.DisplayName);
+	  authContext.SetClaims(
+		  new Claim("objectidentifier", _expectedUser.Id)
+	  );
 	}
 
-	private void SetAuthenticationAndAuthorization(bool isAdmin, bool isAuth)
+	if (isAdmin)
 	{
-		TestAuthorizationContext authContext = this.AddTestAuthorization();
-
-		if (isAuth)
-		{
-			authContext.SetAuthorized(_expectedUser.DisplayName);
-			authContext.SetClaims(
-				new Claim("objectidentifier", _expectedUser.Id)
-			);
-		}
-
-		if (isAdmin)
-		{
-			authContext.SetPolicies("Admin");
-		}
+	  authContext.SetPolicies("Admin");
 	}
+  }
 
-	private void RegisterServices()
-	{
-		Services.AddSingleton<IBlogService>(new BlogPostService(_blogPostDataMock.Object));
-		Services.AddSingleton<IUserService>(new UserService(_userDataMock.Object));
-	}
+  private void RegisterServices()
+  {
+	Services.AddSingleton<IBlogService>(new BlogPostService(_blogPostDataMock.Object));
+	Services.AddSingleton<IUserService>(new UserService(_userDataMock.Object));
+  }
 }

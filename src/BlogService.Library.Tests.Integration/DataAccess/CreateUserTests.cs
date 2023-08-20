@@ -3,8 +3,8 @@
 // File Name :     CreateUserTests.cs
 // Company :       mpaulosky
 // Author :        Matthew Paulosky
-// Solution Name : IssueTracker
-// Project Name :  BlBlogService.Library.Tests.Integration
+// Solution Name : BlogServiceApp
+// Project Name :  BlogService.Library.Tests.Integration
 // =============================================
 
 namespace BlogService.Library.DataAccess;
@@ -22,7 +22,8 @@ public class CreateUserTests : IAsyncLifetime
 	{
 		_factory = factory;
 		IUserData userData = _factory.Services.GetRequiredService<IUserData>();
-		_sut = new UserService(userData);	}
+		_sut = new UserService(userData);
+	}
 
 	public Task InitializeAsync()
 	{

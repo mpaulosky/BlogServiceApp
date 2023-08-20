@@ -11,18 +11,18 @@ namespace BlogService.Library.Mapping;
 
 public static class DtoToBlogPostMapper
 {
-	public static BlogPost ToBlogPost(this BlogPostDto post)
+  public static BlogPost ToBlogPost(this BlogPostDto post)
+  {
+	return new BlogPost
 	{
-		return new BlogPost
-		{
-			Url = post.Url,
-			Title = post.Title,
-			Content = post.Content,
-			Author = post.Author,
-			Description = post.Description,
-			Image = post.Image!,
-			IsDeleted = post.IsDeleted,
-			Created = post.Created
-		};
-	}
+	  Url = post.Url,
+	  Title = post.Title,
+	  Content = post.Content,
+	  Author = post.Author,
+	  Description = post.Description,
+	  Image = post.Image!,
+	  IsDeleted = post.IsDeleted,
+	  Created = post.Created
+	};
+  }
 }

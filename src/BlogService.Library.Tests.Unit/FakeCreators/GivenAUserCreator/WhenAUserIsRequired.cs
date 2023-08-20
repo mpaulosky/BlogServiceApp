@@ -12,75 +12,75 @@ namespace BlogService.Library.Tests.Unit.FakeCreators.GivenAUserCreator;
 [ExcludeFromCodeCoverage]
 public class WhenAUserIsRequired
 {
-	[Fact]
-	public void ShouldReturnNewUserWithoutId_Test()
-	{
-		// Arrange
-		var expected = UserCreator.GetNewUser()!;
+  [Fact]
+  public void ShouldReturnNewUserWithoutId_Test()
+  {
+	// Arrange
+	var expected = UserCreator.GetNewUser()!;
 
-		// Act
-		var result = UserCreator.GetNewUser();
+	// Act
+	var result = UserCreator.GetNewUser();
 
-		// Assert
-		result.Should().BeEquivalentTo(expected);
-	}
+	// Assert
+	result.Should().BeEquivalentTo(expected);
+  }
 
-	[Fact]
-	public void ShouldReturnNewUserWithId_Test()
-	{
-		// Arrange
-		var expected = UserCreator.GetNewUser(true)!;
+  [Fact]
+  public void ShouldReturnNewUserWithId_Test()
+  {
+	// Arrange
+	var expected = UserCreator.GetNewUser(true)!;
 
-		// Act
-		var result = UserCreator.GetNewUser(true);
+	// Act
+	var result = UserCreator.GetNewUser(true);
 
-		// Assert
+	// Assert
 
-		result.Should().BeEquivalentTo(expected, options => options
-			.Excluding(t => t.Id)
-			.Excluding(t => t.ObjectIdentifier));
-	}
+	result.Should().BeEquivalentTo(expected, options => options
+		.Excluding(t => t.Id)
+		.Excluding(t => t.ObjectIdentifier));
+  }
 
-	[Fact]
-	public void ShouldReturnDifferentNewUserWhenNewSeedIsTrue_Test()
-	{
-		// Arrange
-		var expected = UserCreator.GetNewUser(true)!;
+  [Fact]
+  public void ShouldReturnDifferentNewUserWhenNewSeedIsTrue_Test()
+  {
+	// Arrange
+	var expected = UserCreator.GetNewUser(true)!;
 
-		// Act
-		var result = UserCreator.GetNewUser(true, true);
+	// Act
+	var result = UserCreator.GetNewUser(true, true);
 
-		// Assert
-		result.Should().NotBeEquivalentTo(expected);
-	}
+	// Assert
+	result.Should().NotBeEquivalentTo(expected);
+  }
 
-	[Fact]
-	public void ShouldReturnAListOfNewUsers_Test()
-	{
-		// Arrange
-		var expected = UserCreator.GetUsers(3)!;
+  [Fact]
+  public void ShouldReturnAListOfNewUsers_Test()
+  {
+	// Arrange
+	var expected = UserCreator.GetUsers(3)!;
 
-		// Act
-		IEnumerable<User> result = UserCreator.GetUsers(3);
+	// Act
+	IEnumerable<User> result = UserCreator.GetUsers(3);
 
-		// Assert
-		result.Should().BeEquivalentTo(expected, options => options
-			.Excluding(t => t.Id)
-			.Excluding(t => t.ObjectIdentifier));
-	}
+	// Assert
+	result.Should().BeEquivalentTo(expected, options => options
+		.Excluding(t => t.Id)
+		.Excluding(t => t.ObjectIdentifier));
+  }
 
-	[Fact]
-	public void ShouldReturnAListOfUsers_Test()
-	{
-		// Arrange
-		var expected = UserCreator.GetUsers(3)!;
+  [Fact]
+  public void ShouldReturnAListOfUsers_Test()
+  {
+	// Arrange
+	var expected = UserCreator.GetUsers(3)!;
 
-		// Act
-		IEnumerable<User> result = UserCreator.GetUsers(3).ToList();
+	// Act
+	IEnumerable<User> result = UserCreator.GetUsers(3).ToList();
 
-		// Assert
-		result.Should().BeEquivalentTo(expected, options => options
-			.Excluding(t => t.Id)
-			.Excluding(t => t.ObjectIdentifier));
-	}
+	// Assert
+	result.Should().BeEquivalentTo(expected, options => options
+		.Excluding(t => t.Id)
+		.Excluding(t => t.ObjectIdentifier));
+  }
 }

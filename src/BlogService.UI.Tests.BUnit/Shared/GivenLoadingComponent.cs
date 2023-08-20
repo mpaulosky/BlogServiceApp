@@ -12,19 +12,19 @@ namespace BlogService.UI.Tests.BUnit.Shared;
 [ExcludeFromCodeCoverage]
 public class GivenLoadingComponent : TestContext
 {
-	private IRenderedComponent<LoadingComponent> ComponentUnderTest()
-	{
-		IRenderedComponent<LoadingComponent> component = RenderComponent<LoadingComponent>();
+  private IRenderedComponent<LoadingComponent> ComponentUnderTest()
+  {
+	IRenderedComponent<LoadingComponent> component = RenderComponent<LoadingComponent>();
 
-		return component;
-	}
+	return component;
+  }
 
-	[Fact]
-	public void LoadingComponentOnLoad_Test()
-	{
-		// Arrange
-		const string expected =
-			"""
+  [Fact]
+  public void LoadingComponentOnLoad_Test()
+  {
+	// Arrange
+	const string expected =
+		"""
 			<div>
 				<svg class="loading-progress">
 					<circle r="40%" cx="50%" cy="50%"></circle>
@@ -34,10 +34,10 @@ public class GivenLoadingComponent : TestContext
 			</div>
 			""";
 
-		// Act
-		var cut = ComponentUnderTest();
+	// Act
+	var cut = ComponentUnderTest();
 
-		// Assert
-		cut.MarkupMatches(expected);
-	}
+	// Assert
+	cut.MarkupMatches(expected);
+  }
 }

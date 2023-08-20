@@ -1,10 +1,10 @@
 ﻿// ============================================
 // Copyright (c) 2023. All rights reserved.
-// File Name :     GetBlogPostTests.cs
+// File Name :     GetBlogPostsTests.cs
 // Company :       mpaulosky
 // Author :        Matthew Paulosky
-// Solution Name : IssueTracker
-// Project Name :  BloBlogService.Library.Tests.Integration
+// Solution Name : BlogServiceApp
+// Project Name :  BlogService.Library.Tests.Integration
 // =============================================
 
 namespace BlogService.Library.DataAccess;
@@ -49,6 +49,6 @@ public class GetBlogPostsTests : IAsyncLifetime
 		results.Count.Should().Be(1);
 		results.First().Should().BeEquivalentTo(expected, options => options
 			.Excluding(x => x.Created)
-			.Excluding(t=> t.Updated));
+			.Excluding(t => t.Updated));
 	}
 }

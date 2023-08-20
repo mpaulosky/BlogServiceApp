@@ -3,8 +3,8 @@
 // File Name :     CreateBlogPostTests.cs
 // Company :       mpaulosky
 // Author :        Matthew Paulosky
-// Solution Name : IssueTracker
-// Project Name :  BlBlogService.Library.Tests.Integration
+// Solution Name : BlogServiceApp
+// Project Name :  BlogService.Library.Tests.Integration
 // =============================================
 
 namespace BlogService.Library.DataAccess;
@@ -22,7 +22,8 @@ public class CreateBlogPostTests : IAsyncLifetime
 	{
 		_factory = factory;
 		IBlogPostData postData = _factory.Services.GetRequiredService<IBlogPostData>();
-		_sut = new BlogPostService(postData);	}
+		_sut = new BlogPostService(postData);
+	}
 
 	public Task InitializeAsync()
 	{

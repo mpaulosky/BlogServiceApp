@@ -11,5 +11,5 @@ namespace BlogService.UI.Shared;
 
 public partial class NavMenu
 {
-	private bool _collapseNavMenu = true;
+  private bool _collapseNavMenu = true;
 }
