@@ -44,6 +44,8 @@ public class MongoDbContextFactoryTests : IAsyncLifetime
 
 		// Assert
 		result.Should().NotBeNull();
+		_dbContext.DbName.Should().NotBeNull();
+		_dbContext.ConnectionString.Should().NotBeNull();
 	}
 
 	[Fact]
