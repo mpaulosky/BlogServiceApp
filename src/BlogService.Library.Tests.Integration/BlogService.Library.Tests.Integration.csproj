@@ -10,15 +10,15 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="FluentAssertions" Version="6.11.0"/>
-		<PackageReference Include="JetBrains.Annotations" Version="2023.2.0"/>
-		<PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="7.0.10"/>
-		<PackageReference Include="Microsoft.AspNetCore.TestHost" Version="7.0.10"/>
-		<PackageReference Include="MongoDB.Driver" Version="2.21.0"/>
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.7.0"/>
-		<PackageReference Include="Testcontainers.MongoDb" Version="3.4.0"/>
-		<PackageReference Include="Testcontainers" Version="3.4.0"/>
-		<PackageReference Include="xunit" Version="2.5.0"/>
+		<PackageReference Include="FluentAssertions" Version="6.11.0" />
+		<PackageReference Include="JetBrains.Annotations" Version="2023.2.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="7.0.10" />
+		<PackageReference Include="Microsoft.AspNetCore.TestHost" Version="7.0.10" />
+		<PackageReference Include="MongoDB.Driver" Version="2.21.0" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.7.1" />
+		<PackageReference Include="Testcontainers.MongoDb" Version="3.4.0" />
+		<PackageReference Include="Testcontainers" Version="3.4.0" />
+		<PackageReference Include="xunit" Version="2.5.0" />
 		<PackageReference Include="xunit.runner.visualstudio" Version="2.5.0">
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 			<PrivateAssets>all</PrivateAssets>
@@ -30,9 +30,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\TestingSupport.Library\TestingSupport.Library.csproj"/>
-		<ProjectReference Include="..\BlogService.Library\BlogService.Library.csproj"/>
-		<ProjectReference Include="..\BlogService.UI\BlogService.UI.csproj"/>
+		<ProjectReference Include="..\TestingSupport.Library\TestingSupport.Library.csproj" />
+		<ProjectReference Include="..\BlogService.Library\BlogService.Library.csproj" />
+		<ProjectReference Include="..\BlogService.UI\BlogService.UI.csproj" />
 	</ItemGroup>
 
 </Project>
