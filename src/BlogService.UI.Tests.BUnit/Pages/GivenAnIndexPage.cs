@@ -1,10 +1,10 @@
 ﻿// ============================================
-// Copyright (c) 2023. All rights reserved.
-// File Name :     GivenAnIndexPage.cs
-// Company :       mpaulosky
-// Author :        Matthew Paulosky
-// Solution Name : BlogServiceApp
-// Project Name :  BlogService.UI.Tests.BUnit
+//   Copyright (c) 2023. All rights reserved.
+//   File Name     : GivenAnIndexPage.cs
+//   Company       : mpaulosky
+//   Author        : Matthew Paulosky
+//   Solution Name : BlogServiceApp
+//   Project Name  : BlogService.UI.Tests.BUnit
 // =============================================
 
 namespace BlogService.UI.Tests.BUnit.Pages;
@@ -12,22 +12,22 @@ namespace BlogService.UI.Tests.BUnit.Pages;
 [ExcludeFromCodeCoverage]
 public class GivenAnIndexPage : TestContext
 {
-  private readonly Mock<IBlogPostData> _blogPostDataMock = new();
-  private List<BlogPost>? _expectedPosts = new();
+	private readonly Mock<IBlogPostData> _blogPostDataMock = new();
+	private List<BlogPost>? _expectedPosts = new();
 
-  private IRenderedComponent<Index> ComponentUnderTest()
-  {
-	IRenderedComponent<Index> component = RenderComponent<Index>();
+	private IRenderedComponent<Index> ComponentUnderTest()
+	{
+		IRenderedComponent<Index> component = RenderComponent<Index>();
 
-	return component;
-  }
+		return component;
+	}
 
-  [Fact()]
-  public void Index_With_ValidData_Should_DisplayData_Test()
-  {
-	// Arrange
-	const string expected =
-		"""
+	[Fact()]
+	public void Index_With_ValidData_Should_DisplayData_Test()
+	{
+		// Arrange
+		const string expected =
+			"""
 			<h1>Welcome to my blog!</h1>
 			Here are my latest posts, enjoy!
 			<div class="card my-4">
@@ -65,47 +65,47 @@ public class GivenAnIndexPage : TestContext
 			</div>
 			""";
 
-	_expectedPosts = BlogPostCreator.GetBlogPosts(3).ToList();
+		_expectedPosts = BlogPostCreator.GetBlogPosts(3).ToList();
 
-	SetupMocks();
-	RegisterServices();
+		SetupMocks();
+		RegisterServices();
 
-	// Act
-	var cut = ComponentUnderTest();
+		// Act
+		var cut = ComponentUnderTest();
 
-	// Assert
-	cut.MarkupMatches(expected);
-  }
+		// Assert
+		cut.MarkupMatches(expected);
+	}
 
-  [Fact()]
-  public void Index_With_NoData_Should_DisplayNoData_Test()
-  {
-	// Arrange
-	const string expected =
-		"""
+	[Fact()]
+	public void Index_With_NoData_Should_DisplayNoData_Test()
+	{
+		// Arrange
+		const string expected =
+			"""
 			<h1>Welcome to my blog!</h1>
 			Here are my latest posts, enjoy!
 			""";
 
-	SetupMocks();
-	RegisterServices();
+		SetupMocks();
+		RegisterServices();
 
-	// Act
-	var cut = ComponentUnderTest();
+		// Act
+		var cut = ComponentUnderTest();
 
-	// Assert
-	cut.MarkupMatches(expected);
-  }
+		// Assert
+		cut.MarkupMatches(expected);
+	}
 
-  private void SetupMocks()
-  {
-	_blogPostDataMock.Setup(x => x
-			.GetAllAsync())
-		.ReturnsAsync(_expectedPosts);
-  }
+	private void SetupMocks()
+	{
+		_blogPostDataMock.Setup(x => x
+				.GetAllAsync())
+			.ReturnsAsync(_expectedPosts);
+	}
 
-  private void RegisterServices()
-  {
-	Services.AddSingleton<IBlogService>(new BlogPostService(_blogPostDataMock.Object));
-  }
+	private void RegisterServices()
+	{
+		Services.AddSingleton<IBlogService>(new BlogPostService(_blogPostDataMock.Object));
+	}
 }

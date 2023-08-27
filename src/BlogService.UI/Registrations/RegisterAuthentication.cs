@@ -1,10 +1,10 @@
 ﻿// ============================================
-// Copyright (c) 2023. All rights reserved.
-// File Name :     RegisterAuthentication.cs
-// Company :       mpaulosky
-// Author :        Matthew Paulosky
-// Solution Name : BlogServiceApp
-// Project Name :  BlogService.UI
+//   Copyright (c) 2023. All rights reserved.
+//   File Name     : RegisterAuthentication.cs
+//   Company       : mpaulosky
+//   Author        : Matthew Paulosky
+//   Solution Name : BlogServiceApp
+//   Project Name  : BlogService.UI
 // =============================================
 
 namespace BlogService.UI.Registrations;
@@ -20,12 +20,10 @@ public static partial class ServiceCollectionExtensions
 	/// <param name="services">IServiceCollection</param>
 	/// <param name="config">ConfigurationManager</param>
 	/// <returns>IServiceCollection</returns>
-	public static IServiceCollection AddAuthentication(this IServiceCollection services,
+	public static void AddAuthentication(this IServiceCollection services,
 		ConfigurationManager config)
 	{
 		services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
 			.AddMicrosoftIdentityWebApp(config.GetSection("AzureAdB2C"));
-
-		return services;
 	}
 }

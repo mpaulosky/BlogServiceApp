@@ -1,13 +1,13 @@
 ﻿// ============================================
-// Copyright (c) 2023. All rights reserved.
-// File Name :     GetUsersTests.cs
-// Company :       mpaulosky
-// Author :        Matthew Paulosky
-// Solution Name : BlogServiceApp
-// Project Name :  BlogService.Library.Tests.Integration
+//   Copyright (c) 2023. All rights reserved.
+//   File Name     : GetUsersTests.cs
+//   Company       : mpaulosky
+//   Author        : Matthew Paulosky
+//   Solution Name : BlogServiceApp
+//   Project Name  : BlogService.Library.Tests.Integration
 // =============================================
 
-namespace BlogService.Library.DataAccess;
+namespace BlogService.Library.DataAccess.GivenUserService;
 
 [ExcludeFromCodeCoverage]
 [Collection("Test Collection")]

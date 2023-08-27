@@ -1,10 +1,10 @@
 ﻿// ============================================
-// Copyright (c) 2023. All rights reserved.
-// File Name :     RegisterApplicationServices.cs
-// Company :       mpaulosky
-// Author :        Matthew Paulosky
-// Solution Name : BlogServiceApp
-// Project Name :  BlogService.UI
+//   Copyright (c) 2023. All rights reserved.
+//   File Name     : RegisterApplicationServices.cs
+//   Company       : mpaulosky
+//   Author        : Matthew Paulosky
+//   Solution Name : BlogServiceApp
+//   Project Name  : BlogService.UI
 // =============================================
 
 namespace BlogService.UI.Registrations;
@@ -19,13 +19,11 @@ public static partial class ServiceCollectionExtensions
 	/// </summary>
 	/// <param name="services">IServiceCollection</param>
 	/// <returns>IServiceCollection</returns>
-	public static IServiceCollection RegisterApplicationServices(this IServiceCollection services)
+	public static void RegisterApplicationServices(this IServiceCollection services)
 	{
 		services.AddRazorPages();
 		services.AddServerSideBlazor().AddMicrosoftIdentityConsentHandler();
 		services.AddMemoryCache();
 		services.AddControllersWithViews().AddMicrosoftIdentityUI();
-
-		return services;
 	}
 }

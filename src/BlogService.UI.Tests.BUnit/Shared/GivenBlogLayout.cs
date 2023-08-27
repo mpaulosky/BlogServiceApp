@@ -1,10 +1,10 @@
 ﻿// ============================================
-// Copyright (c) 2023. All rights reserved.
-// File Name :     GivenBlogLayout.cs
-// Company :       mpaulosky
-// Author :        Matthew Paulosky
-// Solution Name : BlogServiceApp
-// Project Name :  BlogService.UI.Tests.BUnit
+//   Copyright (c) 2023. All rights reserved.
+//   File Name     : GivenBlogLayout.cs
+//   Company       : mpaulosky
+//   Author        : Matthew Paulosky
+//   Solution Name : BlogServiceApp
+//   Project Name  : BlogService.UI.Tests.BUnit
 // =============================================
 
 namespace BlogService.UI.Tests.BUnit.Shared;
@@ -12,21 +12,21 @@ namespace BlogService.UI.Tests.BUnit.Shared;
 [ExcludeFromCodeCoverage]
 public class GivenBlogLayout : TestContext
 {
-  private readonly User _expectedUser = UserCreator.GetNewUser(true);
+	private readonly User _expectedUser = UserCreator.GetNewUser(true);
 
-  private IRenderedComponent<BlogLayout> ComponentUnderTest()
-  {
-	IRenderedComponent<BlogLayout> component = RenderComponent<BlogLayout>();
+	private IRenderedComponent<BlogLayout> ComponentUnderTest()
+	{
+		IRenderedComponent<BlogLayout> component = RenderComponent<BlogLayout>();
 
-	return component;
-  }
+		return component;
+	}
 
-  [Fact]
-  public void BlogLayoutOnLoad_AsUnAuthorized_Test()
-  {
-	// Arrange
-	const string expected =
-		"""
+	[Fact]
+	public void BlogLayoutOnLoad_AsUnAuthorized_Test()
+	{
+		// Arrange
+		const string expected =
+			"""
 			<div class="container">
 			<header >
 			 <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" >
@@ -61,21 +61,21 @@ public class GivenBlogLayout : TestContext
 			</div>
 			""";
 
-	SetAuthenticationAndAuthorization(false, false);
+		SetAuthenticationAndAuthorization(false, false);
 
-	// Act
-	var cut = ComponentUnderTest();
+		// Act
+		var cut = ComponentUnderTest();
 
-	// Assert
-	cut.MarkupMatches(expected);
-  }
+		// Assert
+		cut.MarkupMatches(expected);
+	}
 
-  [Fact]
-  public void BlogLayoutOnLoad_AsAuthorizedNotAdmin_Test()
-  {
-	// Arrange
-	const string expected =
-		"""
+	[Fact]
+	public void BlogLayoutOnLoad_AsAuthorizedNotAdmin_Test()
+	{
+		// Arrange
+		const string expected =
+			"""
 			<div class="container">
 			<header >
 			 <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" >
@@ -121,21 +121,21 @@ public class GivenBlogLayout : TestContext
 			</div>
 			""";
 
-	SetAuthenticationAndAuthorization(false, true);
+		SetAuthenticationAndAuthorization(false, true);
 
-	// Act
-	var cut = ComponentUnderTest();
+		// Act
+		var cut = ComponentUnderTest();
 
-	// Assert
-	cut.MarkupMatches(expected);
-  }
+		// Assert
+		cut.MarkupMatches(expected);
+	}
 
-  [Fact]
-  public void BlogLayoutOnLoad_AsAuthorizedAndAdmin_Test()
-  {
-	// Arrange
-	const string expected =
-		"""
+	[Fact]
+	public void BlogLayoutOnLoad_AsAuthorizedAndAdmin_Test()
+	{
+		// Arrange
+		const string expected =
+			"""
 			<div class="container">
 			<header >
 			 <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" >
@@ -186,30 +186,30 @@ public class GivenBlogLayout : TestContext
 			</div>
 			""";
 
-	SetAuthenticationAndAuthorization(true, true);
+		SetAuthenticationAndAuthorization(true, true);
 
-	// Act
-	var cut = ComponentUnderTest();
+		// Act
+		var cut = ComponentUnderTest();
 
-	// Assert
-	cut.MarkupMatches(expected);
-  }
-
-  private void SetAuthenticationAndAuthorization(bool isAdmin, bool isAuth)
-  {
-	TestAuthorizationContext authContext = this.AddTestAuthorization();
-
-	if (isAuth)
-	{
-	  authContext.SetAuthorized(_expectedUser.DisplayName);
-	  authContext.SetClaims(
-		  new Claim("objectidentifier", _expectedUser.Id)
-	  );
+		// Assert
+		cut.MarkupMatches(expected);
 	}
 
-	if (isAdmin)
+	private void SetAuthenticationAndAuthorization(bool isAdmin, bool isAuth)
 	{
-	  authContext.SetPolicies("Admin");
+		TestAuthorizationContext authContext = this.AddTestAuthorization();
+
+		if (isAuth)
+		{
+			authContext.SetAuthorized(_expectedUser.DisplayName);
+			authContext.SetClaims(
+				new Claim("objectidentifier", _expectedUser.Id)
+			);
+		}
+
+		if (isAdmin)
+		{
+			authContext.SetPolicies("Admin");
+		}
 	}
-  }
 }

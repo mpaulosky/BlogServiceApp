@@ -1,10 +1,10 @@
 ﻿// ============================================
-// Copyright (c) 2023. All rights reserved.
-// File Name :     PlaywrightFixture.cs
-// Company :       mpaulosky
-// Author :        Matthew Paulosky
-// Solution Name : BlogServiceApp
-// Project Name :  BlogService.UI.Tests.Playwright
+//   Copyright (c) 2023. All rights reserved.
+//   File Name     : PlaywrightFixture.cs
+//   Company       : mpaulosky
+//   Author        : Matthew Paulosky
+//   Solution Name : BlogServiceApp
+//   Project Name  : BlogService.UI.Tests.Playwright
 // =============================================
 
 namespace BlogService.UI.Tests.Playwright.Fixtures;
@@ -18,27 +18,22 @@ namespace BlogService.UI.Tests.Playwright.Fixtures;
 ///   </p>
 /// </summary>
 [UsedImplicitly]
+[ExcludeFromCodeCoverage]
 public class PlaywrightFixture : PlaywrightFixture<IAppMarker>
 {
-	public override string Environment { get; } = "Development";
-	private readonly Guid _uniqueId = Guid.NewGuid();
-	private readonly MongoDbContainer _mongoDbContainer = new MongoDbBuilder().Build();
-
-	private IDatabaseSettings? DbConfig { get; set; }
-
 	public PlaywrightFixture(IMessageSink output) : base(output)
 	{
 	}
 
-	protected override IHost CreateHost(IHostBuilder builder)
-	{
-		builder.AddTestConfiguration();
-		builder.UseOnlyTestContainer();
-		builder.UseUniqueDb(_uniqueId);
-		var host = base.CreateHost(builder);
+	public override string Environment { get; } = "Development";
 
-		return host;
-	}
+	private readonly Guid _uniqueId = Guid.NewGuid();
+
+	private string MongoConnectionString { get; set; }
+
+	private readonly MongoDbContainer _mongoDbContainer = new MongoDbBuilder().Build();
+
+	public IMongoDbContextFactory DbContext { get; set; }
 
 	// Temp hack to see if it is a timing issue in github actions
 	public override async Task InitializeAsync()
@@ -46,16 +41,18 @@ public class PlaywrightFixture : PlaywrightFixture<IAppMarker>
 		await base.InitializeAsync();
 
 		await _mongoDbContainer.StartAsync();
-		string connString = _mongoDbContainer.GetConnectionString();
-		string dbName = $"test_{Guid.NewGuid():N}";
-		DbConfig = new DatabaseSettings(connString, databaseName: dbName) { ConnectionStrings = connString, DatabaseName = dbName };
-
-
-		Services.AddSingleton<IDatabaseSettings>(DbConfig);
-
-		Services.AddSingleton<IMongoDbContextFactory>(new MongoDbContextFactory(DbConfig));
+		MongoConnectionString = _mongoDbContainer.GetConnectionString();
 
 		await Services.ApplyStartUpDelay();
+	}
+
+	protected override IHost CreateHost(IHostBuilder builder)
+	{
+		builder.AddTestConfiguration();
+		builder.UseUniqueDb(_uniqueId, MongoConnectionString);
+		var host = base.CreateHost(builder);
+
+		return host;
 	}
 
 	[System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA1816:Dispose methods should call SuppressFinalize",

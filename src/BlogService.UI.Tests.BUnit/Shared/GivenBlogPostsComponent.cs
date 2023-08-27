@@ -1,10 +1,10 @@
 ﻿// ============================================
-// Copyright (c) 2023. All rights reserved.
-// File Name :     GivenBlogPostsComponent.cs
-// Company :       mpaulosky
-// Author :        Matthew Paulosky
-// Solution Name : BlogServiceApp
-// Project Name :  BlogService.UI.Tests.BUnit
+//   Copyright (c) 2023. All rights reserved.
+//   File Name     : GivenBlogPostsComponent.cs
+//   Company       : mpaulosky
+//   Author        : Matthew Paulosky
+//   Solution Name : BlogServiceApp
+//   Project Name  : BlogService.UI.Tests.BUnit
 // =============================================
 
 namespace BlogService.UI.Tests.BUnit.Shared;
@@ -12,22 +12,22 @@ namespace BlogService.UI.Tests.BUnit.Shared;
 [ExcludeFromCodeCoverage]
 public class GivenBlogPostsComponent : TestContext
 {
-  private readonly Mock<IBlogService> _blogServiceMock = new();
-  private List<BlogPost>? _expectedPosts = new();
+	private readonly Mock<IBlogService> _blogServiceMock = new();
+	private List<BlogPost>? _expectedPosts = new();
 
-  private IRenderedComponent<BlogPosts> ComponentUnderTest()
-  {
-	IRenderedComponent<BlogPosts> component = RenderComponent<BlogPosts>();
+	private IRenderedComponent<BlogPosts> ComponentUnderTest()
+	{
+		IRenderedComponent<BlogPosts> component = RenderComponent<BlogPosts>();
 
-	return component;
-  }
+		return component;
+	}
 
-  [Fact]
-  public void BlogPosts_With_Data_Should_DisplayPosts_Test()
-  {
-	// Arrange
-	const string expected =
-		"""
+	[Fact]
+	public void BlogPosts_With_Data_Should_DisplayPosts_Test()
+	{
+		// Arrange
+		const string expected =
+			"""
 			<div class="card my-4">
 			<div class="card-img" style="background-image: url('https://picsum.photos/1060/300/?image=12');"></div>
 			<div class="card-body">
@@ -63,24 +63,24 @@ public class GivenBlogPostsComponent : TestContext
 			</div>
 			""";
 
-	_expectedPosts = BlogPostCreator.GetBlogPosts(3).ToList();
+		_expectedPosts = BlogPostCreator.GetBlogPosts(3).ToList();
 
-	SetupMocks();
-	RegisterServices();
+		SetupMocks();
+		RegisterServices();
 
-	// Act
-	var cut = ComponentUnderTest();
+		// Act
+		var cut = ComponentUnderTest();
 
-	// Assert
-	cut.MarkupMatches(expected);
-  }
+		// Assert
+		cut.MarkupMatches(expected);
+	}
 
-  [Fact()]
-  public void BlogPosts_With_NoData_Should_DisplayNoData_Test()
-  {
-	// Arrange
-	const string expected =
-		"""
+	[Fact()]
+	public void BlogPosts_With_NoData_Should_DisplayNoData_Test()
+	{
+		// Arrange
+		const string expected =
+			"""
 			<div>
 			  <svg class="loading-progress">
 			    <circle r="40%" cx="50%" cy="50%"></circle>
@@ -90,22 +90,22 @@ public class GivenBlogPostsComponent : TestContext
 			</div>
 			""";
 
-	RegisterServices();
+		RegisterServices();
 
-	// Act
-	var cut = ComponentUnderTest();
+		// Act
+		var cut = ComponentUnderTest();
 
-	// Assert
-	cut.MarkupMatches(expected);
-  }
+		// Assert
+		cut.MarkupMatches(expected);
+	}
 
-  private void RegisterServices()
-  {
-	Services.AddSingleton(_blogServiceMock.Object);
-  }
+	private void RegisterServices()
+	{
+		Services.AddSingleton(_blogServiceMock.Object);
+	}
 
-  private void SetupMocks()
-  {
-	_blogServiceMock.Setup(m => m.GetAllAsync()).ReturnsAsync(_expectedPosts);
-  }
+	private void SetupMocks()
+	{
+		_blogServiceMock.Setup(m => m.GetAllAsync()).ReturnsAsync(_expectedPosts);
+	}
 }

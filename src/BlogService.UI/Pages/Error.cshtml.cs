@@ -1,10 +1,10 @@
 ﻿// ============================================
-// Copyright (c) 2023. All rights reserved.
-// File Name :     Error.cshtml.cs
-// Company :       mpaulosky
-// Author :        Matthew Paulosky
-// Solution Name : BlogServiceApp
-// Project Name :  BlogService.UI
+//   Copyright (c) 2023. All rights reserved.
+//   File Name     : Error.cshtml.cs
+//   Company       : mpaulosky
+//   Author        : Matthew Paulosky
+//   Solution Name : BlogServiceApp
+//   Project Name  : BlogService.UI
 // =============================================
 
 using System.Diagnostics;
@@ -18,19 +18,19 @@ namespace BlogService.UI.Pages;
 [IgnoreAntiforgeryToken]
 public class ErrorModel : PageModel
 {
-  private readonly ILogger<ErrorModel> _logger;
+	private readonly ILogger<ErrorModel> _logger;
 
-  public ErrorModel(ILogger<ErrorModel> logger)
-  {
-	_logger = logger;
-  }
+	public ErrorModel(ILogger<ErrorModel> logger)
+	{
+		_logger = logger;
+	}
 
-  public string RequestId { get; set; }
+	public string RequestId { get; set; }
 
-  public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+	public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
 
-  public void OnGet()
-  {
-	RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
-  }
+	public void OnGet()
+	{
+		RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
+	}
 }

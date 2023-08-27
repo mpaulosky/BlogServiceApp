@@ -1,23 +1,27 @@
 ﻿// ============================================
-// Copyright (c) 2023. All rights reserved.
-// File Name :     FixtureExtensions.cs
-// Company :       mpaulosky
-// Author :        Matthew Paulosky
-// Solution Name : BlogServiceApp
-// Project Name :  BlogService.UI.Tests.Playwright
+//   Copyright (c) 2023. All rights reserved.
+//   File Name     : FixtureExtensions.cs
+//   Company       : mpaulosky
+//   Author        : Matthew Paulosky
+//   Solution Name : BlogServiceApp
+//   Project Name  : BlogService.UI.Tests.Playwright
 // =============================================
 
 namespace BlogService.UI.Tests.Playwright.Fixtures;
 
+[ExcludeFromCodeCoverage]
 public static class FixtureExtensions
 {
-	public static IHostBuilder UseUniqueDb(this IHostBuilder builder, Guid id) =>
+	public static IHostBuilder UseUniqueDb(this IHostBuilder builder, Guid id, string connection) =>
 		builder.ConfigureAppConfiguration(configuration =>
 		{
+			// Add connection section to the configuration
+
 			var testConfiguration = new Dictionary<string, string>
 			{
-				{ "ConnectionStrings:SecurityContextConnection", $"Data Source=TagzApp.Web.{id:N}.db" }
+				{ "MongoDbSettings:ConnectionStrings", connection }, { "MongoDbSettings:DatabaseName", $"BlogService{id:N}" }
 			};
+
 			configuration.AddInMemoryCollection(testConfiguration);
 		});
 
@@ -47,7 +51,7 @@ public static class FixtureExtensions
 	/// <param name="builder">The IHostBuilder</param>
 	/// <param name="fileName">The filename or null (defaults to appsettings.Test.json)</param>
 	/// <returns>Returns the IHostBuilder to allow chaining</returns>
-	public static IHostBuilder AddTestConfiguration(this IHostBuilder builder, string? fileName = null)
+	public static IHostBuilder AddTestConfiguration(this IHostBuilder builder, string fileName = null)
 	{
 		var testDirectory = Directory.GetCurrentDirectory();
 		builder.ConfigureAppConfiguration(host =>
@@ -68,29 +72,5 @@ public static class FixtureExtensions
 		{
 			await Task.Delay(delay);
 		}
-	}
-
-	public static void SetMongoDbContainer(this IServiceProvider builder, MongoDbContainer mongoDbContainer) =>
-		builder..ConfigureServices(services => services.CreateDatabase(mongoDbContainer));
-
-	private static void CreateDatabase(this IServiceCollection services, MongoDbContainer mongoDbContainer)
-	{
-
-	}
-
-	public static IHostBuilder UseOnlyTestContainer(this IHostBuilder builder) =>
-		builder.ConfigureServices(services => services.UseOnlyTestContainerConnections());
-
-	private static void UseOnlyTestContainerConnections(this IServiceCollection services)
-	{
-		ServiceDescriptor? dbConnectionDescriptor =
-			services.SingleOrDefault(d => d.ServiceType == typeof(IMongoDbContextFactory));
-
-		services.Remove(dbConnectionDescriptor!);
-
-		ServiceDescriptor? dbSettings =
-			services.SingleOrDefault(d => d.ServiceType == typeof(IDatabaseSettings));
-
-		services.Remove(dbSettings!);
 	}
 }

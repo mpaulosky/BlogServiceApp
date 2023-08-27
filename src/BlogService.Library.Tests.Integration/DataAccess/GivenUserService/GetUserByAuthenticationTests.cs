@@ -1,24 +1,24 @@
 ﻿// ============================================
-// Copyright (c) 2023. All rights reserved.
-// File Name :     GetUserTests.cs
-// Company :       mpaulosky
-// Author :        Matthew Paulosky
-// Solution Name : BlogServiceApp
-// Project Name :  BlogService.Library.Tests.Integration
+//   Copyright (c) 2023. All rights reserved.
+//   File Name     : GetUserByAuthenticationTests.cs
+//   Company       : mpaulosky
+//   Author        : Matthew Paulosky
+//   Solution Name : BlogServiceApp
+//   Project Name  : BlogService.Library.Tests.Integration
 // =============================================
 
-namespace BlogService.Library.DataAccess;
+namespace BlogService.Library.DataAccess.GivenUserService;
 
 [ExcludeFromCodeCoverage]
 [Collection("Test Collection")]
-public class GetUserTests : IAsyncLifetime
+public class GetUserByAuthenticationTests : IAsyncLifetime
 {
 	private const string CleanupValue = "users";
 
 	private readonly IntegrationTestFactory _factory;
 	private readonly UserService _sut;
 
-	public GetUserTests(IntegrationTestFactory factory)
+	public GetUserByAuthenticationTests(IntegrationTestFactory factory)
 	{
 		_factory = factory;
 		IUserData userData = _factory.Services.GetRequiredService<IUserData>();
@@ -36,14 +36,14 @@ public class GetUserTests : IAsyncLifetime
 	}
 
 	[Fact]
-	public async Task GetAsync_With_WithData_Should_ReturnAValidUser_TestAsync()
+	public async Task GetByAuthIdAsync_With_WithData_Should_ReturnAValidUser_TestAsync()
 	{
 		// Arrange
 		User expected = UserCreator.GetNewUser();
 		await _sut.CreateAsync(expected);
 
 		// Act
-		User result = await _sut.GetAsync(expected.Id);
+		User result = await _sut.GetByAuthIdAsync(expected.ObjectIdentifier);
 
 		// Assert
 		result.Should().BeEquivalentTo(expected);
@@ -51,12 +51,12 @@ public class GetUserTests : IAsyncLifetime
 
 	[Theory]
 	[InlineData("62cf2ad6326e99d665759e5a")]
-	public async Task GetAsync_With_WithoutData_Should_ReturnNothing_TestAsync(string value)
+	public async Task GetByAuthIdAsync_With_WithoutData_Should_ReturnNothing_TestAsync(string value)
 	{
 		// Arrange
 
 		// Act
-		User result = await _sut.GetAsync(value!);
+		User result = await _sut.GetByAuthIdAsync(value!);
 
 		// Assert
 		result.Should().BeNull();

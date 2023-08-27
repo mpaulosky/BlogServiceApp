@@ -1,10 +1,10 @@
 ﻿// ============================================
-// Copyright (c) 2023. All rights reserved.
-// File Name :     RegisterAuthorization.cs
-// Company :       mpaulosky
-// Author :        Matthew Paulosky
-// Solution Name : BlogServiceApp
-// Project Name :  BlogService.UI
+//   Copyright (c) 2023. All rights reserved.
+//   File Name     : RegisterAuthorization.cs
+//   Company       : mpaulosky
+//   Author        : Matthew Paulosky
+//   Solution Name : BlogServiceApp
+//   Project Name  : BlogService.UI
 // =============================================
 
 namespace BlogService.UI.Registrations;
@@ -19,7 +19,7 @@ public static partial class ServiceCollectionExtensions
 	/// </summary>
 	/// <param name="services">IServiceCollection</param>
 	/// <returns>IServiceCollection</returns>
-	public static IServiceCollection AddAuthorizationPolicy(this IServiceCollection services)
+	public static void AddAuthorizationPolicy(this IServiceCollection services)
 	{
 		services.AddAuthorization(options =>
 		{
@@ -28,7 +28,5 @@ public static partial class ServiceCollectionExtensions
 				policy.RequireClaim("jobTitle", "Admin");
 			});
 		});
-
-		return services;
 	}
 }
