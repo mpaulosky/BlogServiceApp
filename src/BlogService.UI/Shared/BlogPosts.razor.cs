@@ -13,7 +13,7 @@ public partial class BlogPosts
 {
 	private List<BlogPost> Posts { get; set; } = new();
 
-	const string PlaceHolderImage = "https://via.placeholder.com/1060x180";
+	private const string PlaceHolderImage = "https://picsum.photos/id/201/1060/300";
 
 	protected override async Task OnInitializedAsync()
 	{

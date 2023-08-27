@@ -78,7 +78,7 @@ public static class BlogPostCreator
 			.RuleFor(x => x.Updated, f => f.Date.Past())
 			.RuleFor(x => x.IsPublished, f => f.Random.Bool())
 			.RuleFor(x => x.IsDeleted, f => f.Random.Bool())
-			.RuleFor(x => x.Image, f => f.Image.PicsumUrl(1060, 300, false, false, 12))
+			.RuleFor(x => x.Image, f => f.Image.PicsumUrl(1060, 300, false, false, 201))
 			.UseSeed(seed);
 	}
 }

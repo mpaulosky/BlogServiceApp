@@ -13,7 +13,8 @@ namespace BlogService.UI.Pages;
 public partial class Posts
 {
 	private BlogPost _post;
-	private const string PlaceholderImage = "https://via.placeholder.com/1060x300";
+	private const string PlaceHolderImage = "https://picsum.photos/id/201/1060/300";
+
 	[Parameter] public string Url { get; set; }
 
 	protected override async Task OnInitializedAsync()
