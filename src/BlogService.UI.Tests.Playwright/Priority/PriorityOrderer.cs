@@ -7,7 +7,7 @@
 // Project Name :  BlogService.UI.Tests.Playwright
 // =============================================
 
-namespace BlogService.UI.Tests.Playwright.Priority;
+namespace BlogService.UI.Priority;
 
 public class PriorityOrderer : ITestCaseOrderer
 {

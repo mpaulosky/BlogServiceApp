@@ -7,7 +7,7 @@
 // Project Name :  BlogService.UI.Tests.Playwright
 // =============================================
 
-namespace BlogService.UI.Tests.Playwright.Priority;
+namespace BlogService.UI.Priority;
 
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
 public class TestPriorityAttribute : Attribute

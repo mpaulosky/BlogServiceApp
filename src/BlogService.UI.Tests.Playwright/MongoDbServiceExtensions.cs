@@ -9,7 +9,7 @@
 
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
-namespace BlogService.UI.Tests.Playwright;
+namespace BlogService.UI;
 
 [ExcludeFromCodeCoverage]
 public static class MongoDbServiceExtensions

@@ -7,7 +7,7 @@
 // Project Name :  BlogService.UI.Tests.Playwright
 // =============================================
 
-namespace BlogService.UI.Tests.Playwright;
+namespace BlogService.UI;
 
 // By default all pages are created in the same browser instance (and may share cookie states etc.) for the scope of the fixture, but will use different 'tabs'.
 // The fixture is scoped to each derived Tests Class.

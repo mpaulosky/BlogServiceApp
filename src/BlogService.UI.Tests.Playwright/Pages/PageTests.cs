@@ -7,7 +7,7 @@
 // Project Name :  BlogService.UI.Tests.Playwright
 // =============================================
 
-namespace BlogService.UI.Tests.Playwright.Tests;
+namespace BlogService.UI.Pages;
 
 [ExcludeFromCodeCoverage]
 public class PageTests : TestsBase
@@ -19,12 +19,15 @@ public class PageTests : TestsBase
 	[Fact]
 	public async Task CheckHomePageTitle()
 	{
+		// Arrange
 		var page = await WebApp.CreatePlaywrightPageAsync();
 
+		// Act
 		await page.GotoIndexPage();
 
 		var result = await page.TitleAsync();
 
+		// Assert
 		result.Should().Be("Blazor Blog Home");
 
 		await page.CloseAsync();

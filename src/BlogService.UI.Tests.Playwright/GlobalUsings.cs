@@ -11,7 +11,7 @@ global using System.Diagnostics.CodeAnalysis;
 global using BlogService.Library.Contracts;
 global using BlogService.Library.DataAccess;
 global using BlogService.Library.Models;
-global using BlogService.UI.Tests.Playwright.Fixtures;
+global using BlogService.UI.Fixtures;
 global using C3D.Extensions.Playwright.AspNetCore.Xunit;
 global using FluentAssertions;
 global using JetBrains.Annotations;

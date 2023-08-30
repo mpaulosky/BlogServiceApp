@@ -7,7 +7,7 @@
 // Project Name :  BlogService.UI.Tests.Playwright
 // =============================================
 
-namespace BlogService.UI.Tests.Playwright.Fixtures;
+namespace BlogService.UI.Fixtures;
 
 /// <summary>
 ///   WebApplicationFactory that wraps the TestHost in a Kestrel server and provides Playwright and HttpClient testing.
