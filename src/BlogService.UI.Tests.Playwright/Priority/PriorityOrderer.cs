@@ -1,4 +1,13 @@
-﻿namespace BlogService.UI.Tests.Playwright.Priority;
+﻿// ============================================
+// Copyright (c) 2023. All rights reserved.
+// File Name :     PriorityOrderer.cs
+// Company :       mpaulosky
+// Author :        Matthew Paulosky
+// Solution Name : BlogServiceApp
+// Project Name :  BlogService.UI.Tests.Playwright
+// =============================================
+
+namespace BlogService.UI.Tests.Playwright.Priority;
 
 public class PriorityOrderer : ITestCaseOrderer
 {

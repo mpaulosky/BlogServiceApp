@@ -1,10 +1,10 @@
 ﻿// ============================================
-//   Copyright (c) 2023. All rights reserved.
-//   File Name     : TestsBase.cs
-//   Company       : mpaulosky
-//   Author        : Matthew Paulosky
-//   Solution Name : BlogServiceApp
-//   Project Name  : BlogService.UI.Tests.Playwright
+// Copyright (c) 2023. All rights reserved.
+// File Name :     TestsBase.cs
+// Company :       mpaulosky
+// Author :        Matthew Paulosky
+// Solution Name : BlogServiceApp
+// Project Name :  BlogService.UI.Tests.Playwright
 // =============================================
 
 namespace BlogService.UI.Tests.Playwright;

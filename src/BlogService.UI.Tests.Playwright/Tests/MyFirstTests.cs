@@ -1,10 +1,10 @@
 ﻿// ============================================
-//   Copyright (c) 2023. All rights reserved.
-//   File Name     : MyFirstTests.cs
-//   Company       : mpaulosky
-//   Author        : Matthew Paulosky
-//   Solution Name : BlogServiceApp
-//   Project Name  : BlogService.UI.Tests.Playwright
+// Copyright (c) 2023. All rights reserved.
+// File Name :     MyFirstTests.cs
+// Company :       mpaulosky
+// Author :        Matthew Paulosky
+// Solution Name : BlogServiceApp
+// Project Name :  BlogService.UI.Tests.Playwright
 // =============================================
 
 namespace BlogService.UI.Tests.Playwright.Tests;
@@ -26,7 +26,6 @@ public class PageTests : TestsBase
 		var result = await page.TitleAsync();
 
 		result.Should().Be("Blazor Blog Home");
-
 
 		await page.CloseAsync();
 	}

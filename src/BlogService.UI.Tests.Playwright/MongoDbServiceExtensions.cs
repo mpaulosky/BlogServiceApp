@@ -1,4 +1,13 @@
-﻿using Microsoft.Extensions.DependencyInjection.Extensions;
+﻿// ============================================
+// Copyright (c) 2023. All rights reserved.
+// File Name :     MongoDbServiceExtensions.cs
+// Company :       mpaulosky
+// Author :        Matthew Paulosky
+// Solution Name : BlogServiceApp
+// Project Name :  BlogService.UI.Tests.Playwright
+// =============================================
+
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace BlogService.UI.Tests.Playwright;
 

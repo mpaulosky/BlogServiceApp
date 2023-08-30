@@ -5,7 +5,9 @@
 	@foreach (var post in Posts)
 	{
 		<div class="card my-4">
-			<div class="card-img"><img src="@(post.Image ?? PlaceHolderImage)" alt="image"/></div>
+			<div class="card-img">
+				<img src="@(post.Image ?? PlaceHolderImage)" alt="image"/>
+			</div>
 			<div class="card-body">
 				<h5 class="card-title">@post.Title</h5>
 				<p class="card-text">@post.Description</p>

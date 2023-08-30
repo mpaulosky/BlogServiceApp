@@ -1,10 +1,10 @@
 // ============================================
-//   Copyright (c) 2023. All rights reserved.
-//   File Name     : SampleData.razor.cs
-//   Company       : mpaulosky
-//   Author        : Matthew Paulosky
-//   Solution Name : BlogServiceApp
-//   Project Name  : BlogService.UI
+// Copyright (c) 2023. All rights reserved.
+// File Name :     SampleData.razor.cs
+// Company :       mpaulosky
+// Author :        Matthew Paulosky
+// Solution Name : BlogServiceApp
+// Project Name :  BlogService.UI
 // =============================================
 
 namespace BlogService.UI.Pages;

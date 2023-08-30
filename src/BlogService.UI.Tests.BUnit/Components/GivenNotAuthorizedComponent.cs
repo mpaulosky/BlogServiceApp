@@ -1,10 +1,10 @@
 ﻿// ============================================
-//   Copyright (c) 2023. All rights reserved.
-//   File Name     : GivenNotAuthorizedComponent.cs
-//   Company       : mpaulosky
-//   Author        : Matthew Paulosky
-//   Solution Name : BlogServiceApp
-//   Project Name  : BlogService.UI.Tests.BUnit
+// Copyright (c) 2023. All rights reserved.
+// File Name :     GivenNotAuthorizedComponent.cs
+// Company :       mpaulosky
+// Author :        Matthew Paulosky
+// Solution Name : BlogServiceApp
+// Project Name :  BlogService.UI.Tests.BUnit
 // =============================================
 
 using BlogService.UI.Components;

@@ -1,10 +1,10 @@
 ﻿// ============================================
-//   Copyright (c) 2023. All rights reserved.
-//   File Name     : PlaywrightFixture.cs
-//   Company       : mpaulosky
-//   Author        : Matthew Paulosky
-//   Solution Name : BlogServiceApp
-//   Project Name  : BlogService.UI.Tests.Playwright
+// Copyright (c) 2023. All rights reserved.
+// File Name :     PlaywrightFixture.cs
+// Company :       mpaulosky
+// Author :        Matthew Paulosky
+// Solution Name : BlogServiceApp
+// Project Name :  BlogService.UI.Tests.Playwright
 // =============================================
 
 namespace BlogService.UI.Tests.Playwright.Fixtures;
@@ -17,7 +17,6 @@ namespace BlogService.UI.Tests.Playwright.Fixtures;
 ///     Functionality is now wrapped in the nuget package C3D.Extensions.Playwright.AspNetCore.XUnit
 ///   </p>
 /// </summary>
-
 [ExcludeFromCodeCoverage]
 public class PlaywrightFixture : PlaywrightFixture<AssemblyClassLocator>
 {

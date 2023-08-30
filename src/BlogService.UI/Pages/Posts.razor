@@ -4,7 +4,9 @@
 
 @if (_post is not null)
 {
-	<div class="post-img"><img src="@(_post.Image ?? PlaceHolderImage)" alt="image" /></div>
+	<div class="post-img">
+		<img src="@(_post.Image ?? PlaceHolderImage)" alt="image"/>
+	</div>
 	<h3>@_post!.Title</h3>
 	<div>@((MarkupString)Markdown.ToHtml(_post.Content))</div>
 }

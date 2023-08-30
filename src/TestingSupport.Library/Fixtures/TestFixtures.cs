@@ -1,10 +1,10 @@
 ﻿// ============================================
-//   Copyright (c) 2023. All rights reserved.
-//   File Name     : TestFixtures.cs
-//   Company       : mpaulosky
-//   Author        : Matthew Paulosky
-//   Solution Name : BlogServiceApp
-//   Project Name  : TestingSupport.Library
+// Copyright (c) 2023. All rights reserved.
+// File Name :     TestFixtures.cs
+// Company :       mpaulosky
+// Author :        Matthew Paulosky
+// Solution Name : BlogServiceApp
+// Project Name :  TestingSupport.Library
 // =============================================
 
 using BlogService.Library.Contracts;
