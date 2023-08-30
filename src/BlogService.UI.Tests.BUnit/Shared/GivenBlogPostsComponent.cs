@@ -29,37 +29,43 @@ public class GivenBlogPostsComponent : TestContext
 		const string expected =
 			"""
 			<div class="card my-4">
-			<div class="card-img" style="background-image: url('https://picsum.photos/1060/300/?image=12');"></div>
-			<div class="card-body">
-			<h5 diff:ignore class="card-title">Iste quia natus et dignissimos reiciendis ad nostrum totam harum.</h5>
-			<p diff:ignore class="card-text">Doloremque eos asperiores cum ipsam illum pariatur doloribus aperiam cumque. Recusandae est unde vitae amet qui exercitationem.</p>
-			<p class="card-text">
-			 <small diff:ignore></small>
-			</p>
-			<a href:ignore class="btn btn-primary">Read more...</a>
-			</div>
-			</div>
-			<div class="card my-4">
-			<div class="card-img" style="background-image: url('https://picsum.photos/1060/300/?image=12');"></div>
-			<div class="card-body">
-			<h5 diff:ignore class="card-title">Fugiat facere labore quia quia dolor in qui eum tempora.</h5>
-			<p diff:ignore class="card-text">Minima atque ex. Esse autem adipisci aut dolores cupiditate possimus.</p>
-			<p class="card-text">
-			<small diff:ignore></small>
-						</p>
-			<a href:ignore class="btn btn-primary">Read more...</a>
-			</div>
+			  <div class="card-img">
+			    <img diff:ignore>
+			  </div>
+			  <div class="card-body">
+			    <h5 class="card-title">Assumenda iste quia natus et dignissimos reiciendis ad nostrum totam.</h5>
+			    <p class="card-text">Voluptatibus doloremque eos asperiores cum ipsam. Pariatur doloribus aperiam cumque non recusandae est unde vitae. Qui exercitationem doloribus facilis.</p>
+			    <p class="card-text">
+			      <small diff:ignore>Sunday, February 19, 2023</small>
+			    </p>
+			    <a href="/posts/Moises-Schumm" class="btn btn-primary">Read more...</a>
+			  </div>
 			</div>
 			<div class="card my-4">
-			<div class="card-img" style="background-image: url('https://picsum.photos/1060/300/?image=12');"></div>
-			<div class="card-body">
-			<h5 diff:ignore class="card-title">Consectetur quod et quia repellendus adipisci sit ut porro voluptas.</h5>
-			<p diff:ignore class="card-text">Id impedit vel quaerat et. Dolores sint dolore in officia.</p>
-			<p class="card-text">
-			<small diff:ignore></small>
-			</p>
-			<a href:ignore class="btn btn-primary">Read more...</a>
+			  <div class="card-img">
+			    <img diff:ignore>
+			  </div>
+			  <div class="card-body">
+			    <h5 class="card-title">Omnis fugiat facere labore quia quia dolor in qui eum.</h5>
+			    <p class="card-text">Quae minima atque ex est esse.</p>
+			    <p class="card-text">
+			      <small diff:ignore>Saturday, February 25, 2023</small>
+			    </p>
+			    <a href="/posts/Bettye-Crona" class="btn btn-primary">Read more...</a>
+			  </div>
 			</div>
+			<div class="card my-4">
+			  <div class="card-img">
+			    <img diff:ignore>
+			  </div>
+			  <div class="card-body">
+			    <h5 class="card-title">Molestiae aut omnis modi labore et consectetur qui at numquam.</h5>
+			    <p class="card-text">Nesciunt dicta dolores nam occaecati deleniti. Distinctio incidunt libero quia debitis autem sequi provident quasi veniam. Et autem porro qui unde dolores dolorem atque sunt sit. Accusamus facilis corporis laboriosam ut molestiae alias.</p>
+			    <p class="card-text">
+			      <small diff:ignore>Wednesday, January 4, 2023</small>
+			    </p>
+			    <a href="/posts/Abbie-Mraz" class="btn btn-primary">Read more...</a>
+			  </div>
 			</div>
 			""";
 

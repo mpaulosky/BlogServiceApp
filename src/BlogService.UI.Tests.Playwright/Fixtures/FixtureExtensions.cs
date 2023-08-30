@@ -12,37 +12,20 @@ namespace BlogService.UI.Tests.Playwright.Fixtures;
 [ExcludeFromCodeCoverage]
 public static class FixtureExtensions
 {
-	public static IHostBuilder UseUniqueDb(this IHostBuilder builder, Guid id, string connection) =>
+	public static void AddNewMongoDbSettingsSectionToConfig(this IHostBuilder builder, IDatabaseSettings settings)
+	{
 		builder.ConfigureAppConfiguration(configuration =>
 		{
 			// Add connection section to the configuration
 
 			var testConfiguration = new Dictionary<string, string>
 			{
-				{ "MongoDbSettings:ConnectionStrings", connection }, { "MongoDbSettings:DatabaseName", $"BlogService{id:N}" }
+				{ "MongoDbSettings:ConnectionStrings", settings.ConnectionStrings },
+				{ "MongoDbSettings:DatabaseName", settings.DatabaseName }
 			};
 
-			configuration.AddInMemoryCollection(testConfiguration);
+			configuration.AddInMemoryCollection(testConfiguration!);
 		});
-
-	public static async Task CleanUpDbFilesAsync(this Guid id, ILogger logger = null!)
-	{
-		logger ??= Microsoft.Extensions.Logging.Abstractions.NullLogger.Instance;
-		// The host should have shutdown here so we can delete the test database files
-		await Task.Delay(50);
-		var dbFiles = Directory.GetFiles(".", $"TagzApp.Web.{id:N}.db*");
-		foreach (var dbFile in dbFiles)
-		{
-			try
-			{
-				logger.LogInformation("Removing test database file {File}", dbFile);
-				File.Delete(dbFile);
-			}
-			catch (Exception e)
-			{
-				logger.LogWarning("Could not remove test database file {File}: {Reason}", dbFile, e.Message);
-			}
-		}
 	}
 
 	/// <summary>
@@ -51,7 +34,7 @@ public static class FixtureExtensions
 	/// <param name="builder">The IHostBuilder</param>
 	/// <param name="fileName">The filename or null (defaults to appsettings.Test.json)</param>
 	/// <returns>Returns the IHostBuilder to allow chaining</returns>
-	public static IHostBuilder AddTestConfiguration(this IHostBuilder builder, string fileName = null)
+	public static IHostBuilder AddTestConfiguration(this IHostBuilder builder, string? fileName = null)
 	{
 		var testDirectory = Directory.GetCurrentDirectory();
 		builder.ConfigureAppConfiguration(host =>
@@ -72,5 +55,10 @@ public static class FixtureExtensions
 		{
 			await Task.Delay(delay);
 		}
+	}
+
+	public static IMongoDbContextFactory GetDatabaseContext(this IServiceProvider serviceProvider)
+	{
+		return serviceProvider.GetRequiredService<IMongoDbContextFactory>();
 	}
 }

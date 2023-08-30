@@ -12,15 +12,14 @@ namespace BlogService.Library.Fixtures;
 [ExcludeFromCodeCoverage]
 public static class FixtureExtensions
 {
-	public static IWebHostBuilder UseUniqueDb(this IWebHostBuilder builder, string connection) =>
+	public static IWebHostBuilder UseUniqueDb(this IWebHostBuilder builder, IDatabaseSettings settings) =>
 		builder.ConfigureAppConfiguration(configuration =>
 		{
-			Guid uniqueId = Guid.NewGuid();
 			// Add connection section to the configuration
 			var testConfiguration = new Dictionary<string, string>
 			{
-				{ "MongoDbSettings:ConnectionStrings", connection },
-				{ "MongoDbSettings:DatabaseName", $"BlogService{uniqueId:N}" }
+				{ "MongoDbSettings:ConnectionStrings", settings.ConnectionStrings },
+				{ "MongoDbSettings:DatabaseName", settings.DatabaseName }
 			};
 
 			configuration.AddInMemoryCollection(testConfiguration);
@@ -42,6 +41,7 @@ public static class FixtureExtensions
 		while (dbSettings != null)
 		{
 			services.Remove(dbSettings);
+
 			dbSettings = services.SingleOrDefault(
 				d => d.ServiceType == typeof(IDatabaseSettings));
 		}

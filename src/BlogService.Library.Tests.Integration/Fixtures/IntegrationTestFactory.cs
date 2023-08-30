@@ -28,8 +28,7 @@ public class IntegrationTestFactory : WebApplicationFactory<IAppMarker>, IAsyncL
 		ConnectionString = _mongoDbContainer.GetConnectionString();
 		DbSettings = new DatabaseSettings(ConnectionString, _databaseName)
 		{
-			ConnectionStrings = ConnectionString,
-			DatabaseName = _databaseName
+			ConnectionStrings = ConnectionString, DatabaseName = _databaseName
 		};
 	}
 
@@ -37,7 +36,7 @@ public class IntegrationTestFactory : WebApplicationFactory<IAppMarker>, IAsyncL
 	{
 		builder.UseEnvironment("Development");
 
-		builder.UseUniqueDb(ConnectionString);
+		builder.UseUniqueDb(DbSettings);
 
 		builder.ConfigureTestServices(services =>
 		{

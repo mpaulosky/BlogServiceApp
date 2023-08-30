@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "TagzApp.WebTest": {
+    "BlogService.UI.Test.Playwright": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

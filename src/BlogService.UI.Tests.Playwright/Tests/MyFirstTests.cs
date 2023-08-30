@@ -10,21 +10,24 @@
 namespace BlogService.UI.Tests.Playwright.Tests;
 
 [ExcludeFromCodeCoverage]
-public class MyFirstTests : TestsBase
+public class PageTests : TestsBase
 {
-	public MyFirstTests(PlaywrightFixture webapp, ITestOutputHelper outputHelper) : base(webapp, outputHelper)
+	public PageTests(PlaywrightFixture webapp, ITestOutputHelper outputHelper) : base(webapp, outputHelper)
 	{
 	}
 
 	[Fact]
-	public async Task CanLoadIndexPage()
+	public async Task CheckHomePageTitle()
 	{
 		var page = await WebApp.CreatePlaywrightPageAsync();
 
-		await using var trace = await page.TraceAsync("Can Open Index Page", true, true, true);
+		await page.GotoIndexPage();
 
-		page
-			.GotoIndexPage().Result
-			.TitleAsync().Result.Should().Be("Blazor Blog Home");
+		var result = await page.TitleAsync();
+
+		result.Should().Be("Blazor Blog Home");
+
+
+		await page.CloseAsync();
 	}
 }
