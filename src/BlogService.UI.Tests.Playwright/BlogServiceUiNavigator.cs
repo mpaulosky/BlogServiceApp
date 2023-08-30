@@ -7,7 +7,7 @@
 // Project Name :  BlogService.UI.Tests.Playwright
 // =============================================
 
-namespace BlogService.UI.Tests.Playwright;
+namespace BlogService.UI;
 
 /// <summary>
 ///   A collection of extension methods that navigate the application.
@@ -31,16 +31,37 @@ public static class BlogServiceUiNavigator
 		return page;
 	}
 
-	public static async Task<IPage> GotoWaterfallPage(this IPage page)
+	public static async Task<IPage> GoToAdminPage(this IPage page)
 	{
-		if (page.Url != "/waterfall") await page.GotoAsync("/waterfall");
+		if (page.Url != "/admin") await page.GotoAsync("/admin");
 
 		return page;
 	}
 
-	public static async Task<IPage> GotoOverlayPage(this IPage page)
+	public static async Task<IPage> GoToCreatePage(this IPage page)
 	{
-		if (page.Url != "/overlay") await page.GotoAsync("/overlay");
+		if (page.Url != "/create") await page.GotoAsync("/create");
+
+		return page;
+	}
+
+	public static async Task<IPage> GoToEditPage(this IPage page)
+	{
+		if (page.Url != "/edit") await page.GotoAsync("/edit");
+
+		return page;
+	}
+
+	public static async Task<IPage> GoToPostPage(this IPage page)
+	{
+		if (page.Url != "/post") await page.GotoAsync("/post");
+
+		return page;
+	}
+
+	public static async Task<IPage> GoToProfilePage(this IPage page)
+	{
+		if (page.Url != "/profile") await page.GotoAsync("/profile");
 
 		return page;
 	}
