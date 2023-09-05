@@ -55,8 +55,7 @@ public class BlogPost
 	/// <summary>
 	///   Gets or sets the name of the author of the blog post.
 	/// </summary>
-	[BsonRepresentation(BsonType.String)]
-	public string Author { get; set; } = string.Empty;
+	public BasicUser Author { get; set; } = new();
 
 	/// <summary>
 	///   Gets or sets the description for the blog post.
@@ -80,5 +79,13 @@ public class BlogPost
 	///   Gets or sets a value indicating whether the blog post has been deleted.
 	/// </summary>
 	[BsonRepresentation(BsonType.Boolean)]
-	public bool IsDeleted { get; set; }
+	public bool IsArchived { get; set; }
+
+	/// <summary>
+	///   Gets or sets who archived the record.
+	/// </summary>
+	/// <value>
+	///   Who archived the record.
+	/// </value>
+	public BasicUser ArchivedBy { get; set; } = new();
 }

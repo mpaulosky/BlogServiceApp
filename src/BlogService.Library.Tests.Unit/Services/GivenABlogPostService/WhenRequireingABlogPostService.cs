@@ -7,7 +7,7 @@
 // Project Name :  BlogService.Library.Tests.Unit
 // =============================================
 
-namespace BlogService.Library.Tests.Unit.Services.GivenABlogPostService;
+namespace BlogService.Library.Services.GivenABlogPostService;
 
 [ExcludeFromCodeCoverage]
 public class WhenRequiringABlogPostService
@@ -62,7 +62,7 @@ public class WhenRequiringABlogPostService
 	{
 		// Arrange
 		var postToArchive = BlogPostCreator.GetNewBlogPost(true);
-		postToArchive.IsDeleted = true;
+		postToArchive.IsArchived = true;
 
 		_mockData.Setup(d => d.ArchiveAsync(postToArchive)).Returns(Task.CompletedTask);
 

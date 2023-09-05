@@ -7,14 +7,14 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="JetBrains.Annotations" Version="2023.2.0"/>
-		<PackageReference Include="Markdig" Version="0.32.0"/>
-		<PackageReference Include="Microsoft.Identity.Web" Version="2.13.3"/>
-		<PackageReference Include="Microsoft.Identity.Web.UI" Version="2.13.3"/>
+		<PackageReference Include="JetBrains.Annotations" Version="2023.2.0" />
+		<PackageReference Include="Markdig" Version="0.33.0" />
+		<PackageReference Include="Microsoft.Identity.Web" Version="2.13.3" />
+		<PackageReference Include="Microsoft.Identity.Web.UI" Version="2.13.3" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\BlogService.Library\BlogService.Library.csproj"/>
+		<ProjectReference Include="..\BlogService.Library\BlogService.Library.csproj" />
 	</ItemGroup>
 
 </Project>

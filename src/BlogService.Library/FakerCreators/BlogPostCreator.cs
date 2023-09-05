@@ -26,6 +26,9 @@ public static class BlogPostCreator
 			post.Id = string.Empty;
 		}
 
+		post.IsArchived = false;
+		post.ArchivedBy = new BasicUser();
+
 		return post;
 	}
 
@@ -36,6 +39,12 @@ public static class BlogPostCreator
 		foreach (var post in posts)
 		{
 			post.Id = string.Empty;
+			post.IsPublished = false;
+
+			if (post.IsArchived)
+			{
+				post.ArchivedBy = BasicUserCreator.GetNewBasicUser(true);
+			}
 		}
 
 		return posts;
@@ -50,6 +59,11 @@ public static class BlogPostCreator
 	public static IEnumerable<BlogPost> GetBlogPosts(int numberOfPosts, bool useNewSeed = false)
 	{
 		var posts = GenerateFake(useNewSeed).Generate(numberOfPosts);
+
+		foreach (var post in posts.Where(post => post.IsArchived))
+		{
+			post.ArchivedBy = BasicUserCreator.GetNewBasicUser(true);
+		}
 
 		return posts;
 	}
@@ -73,11 +87,11 @@ public static class BlogPostCreator
 			.RuleFor(c => c.Title, f => f.Lorem.Sentence(10))
 			.RuleFor(x => x.Description, f => f.Lorem.Paragraph(1))
 			.RuleFor(x => x.Content, f => f.Lorem.Paragraphs(10))
-			.RuleFor(x => x.Author, f => f.Name.FullName())
+			.RuleFor(x => x.Author, BasicUserCreator.GetNewBasicUser(true))
 			.RuleFor(x => x.Created, f => f.Date.Past())
 			.RuleFor(x => x.Updated, f => f.Date.Past())
 			.RuleFor(x => x.IsPublished, f => f.Random.Bool())
-			.RuleFor(x => x.IsDeleted, f => f.Random.Bool())
+			.RuleFor(x => x.IsArchived, f => f.Random.Bool())
 			.RuleFor(x => x.Image, f => f.Image.PicsumUrl(1060, 300, false, false, 201))
 			.UseSeed(seed);
 	}

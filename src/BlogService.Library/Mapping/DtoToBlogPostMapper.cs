@@ -21,7 +21,7 @@ public static class DtoToBlogPostMapper
 			Author = post.Author,
 			Description = post.Description,
 			Image = post.Image!,
-			IsDeleted = post.IsDeleted,
+			IsArchived = post.IsArchived,
 			Created = post.Created
 		};
 	}

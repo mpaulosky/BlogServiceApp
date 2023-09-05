@@ -53,12 +53,6 @@
 	</div>
 
 	<div class="form-group mb-2">
-		<label for="author">Author</label>
-		<InputText id="author" class="form-control" @bind-Value="_newBlogPost.Author"/>
-		<ValidationMessage For="@(() => _newBlogPost.Author)"/>
-	</div>
-
-	<div class="form-group mb-2">
 		<label for="date">Date Created</label>
 		<InputDate id="date" class="form-control" @bind-Value="_newBlogPost.Created"/>
 	</div>

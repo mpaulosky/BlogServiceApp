@@ -41,10 +41,10 @@ public static class BlogPostDtoCreator
 			.RuleFor(c => c.Title, f => f.Lorem.Sentence(10))
 			.RuleFor(x => x.Description, f => f.Lorem.Paragraph(1))
 			.RuleFor(x => x.Content, f => f.Lorem.Paragraphs(10))
-			.RuleFor(x => x.Author, f => f.Name.FullName())
+			.RuleFor(x => x.Author, BasicUserCreator.GetNewBasicUser(true))
 			.RuleFor(x => x.Created, f => f.Date.Past())
 			.RuleFor(x => x.IsPublished, f => f.Random.Bool())
-			.RuleFor(x => x.IsDeleted, f => f.Random.Bool())
+			.RuleFor(x => x.IsArchived, f => f.Random.Bool())
 			.RuleFor(x => x.Image, f => f.Image.PicsumUrl(1060, 300, false, false, 12))
 			.UseSeed(seed);
 	}

@@ -7,7 +7,7 @@
 // Project Name :  BlogService.Library.Tests.Unit
 // =============================================
 
-namespace BlogService.Library.Tests.Unit.FakeCreators.GivenBlogPostDtoCreator;
+namespace BlogService.Library.FakeCreators.GivenBlogPostDtoCreator;
 
 [ExcludeFromCodeCoverage]
 public class WhenTestBlogPostDtoRequired
@@ -24,6 +24,7 @@ public class WhenTestBlogPostDtoRequired
 		// Assert
 		result.Should().BeEquivalentTo(expected,
 			options => options
+				.Excluding(t => t.Author.Id)
 				.Excluding(t => t.Created));
 	}
 

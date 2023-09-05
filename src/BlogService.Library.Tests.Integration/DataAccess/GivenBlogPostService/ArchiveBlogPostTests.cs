@@ -32,7 +32,6 @@ public class ArchiveBlogPostTests : IAsyncLifetime
 		return Task.CompletedTask;
 	}
 
-
 	public async Task DisposeAsync()
 	{
 		await _factory.ResetCollectionAsync(CleanupValue);
@@ -43,7 +42,7 @@ public class ArchiveBlogPostTests : IAsyncLifetime
 	{
 		// Arrange
 		BlogPost expected = BlogPostCreator.GetNewBlogPost();
-		expected.IsDeleted = true;
+		expected.IsArchived = true;
 
 		await _sut.CreateAsync(expected);
 
@@ -55,6 +54,6 @@ public class ArchiveBlogPostTests : IAsyncLifetime
 		// Assert
 		result.Should().NotBeNull();
 		result.Id.Should().Be(expected.Id);
-		result.IsDeleted.Should().BeTrue();
+		result.IsArchived.Should().BeTrue();
 	}
 }

@@ -7,7 +7,7 @@
 // Project Name :  BlogService.UI.Tests.BUnit
 // =============================================
 
-namespace BlogService.UI.Tests.BUnit.Pages;
+namespace BlogService.UI.Pages;
 
 [ExcludeFromCodeCoverage]
 public class GivenAnCreatePage : TestContext
@@ -19,7 +19,7 @@ public class GivenAnCreatePage : TestContext
 
 	private IRenderedComponent<Create> ComponentUnderTest()
 	{
-		IRenderedComponent<Create> component = RenderComponent<Create>();
+		var component = RenderComponent<Create>();
 
 		return component;
 	}
@@ -57,15 +57,11 @@ public class GivenAnCreatePage : TestContext
 			    <div id="preview" class="form-group mb-2"></div>
 			  </div>
 			  <div class="form-group mb-2">
-			    <label for="author">Author</label>
-			    <input id="author" class="form-control valid" value=""  >
-			  </div>
-			  <div class="form-group mb-2">
 			    <label for="date">Date Created</label>
 			    <input id="date" type="date" class="form-control valid" value:ignore  >
 			  </div>
 			  <div class="form-check mb-2">
-			    <input id="isPublished" type="checkbox" class="form-check-input valid" checked=""  >
+			    <input id="isPublished" type="checkbox" class="form-check-input valid"  >
 			    <label for="isPublished">Publish</label>
 			  </div>
 			  <button id="submit" type="submit" class="btn btn-primary">Create</button>
@@ -77,7 +73,7 @@ public class GivenAnCreatePage : TestContext
 		SetAuthenticationAndAuthorization(true, true);
 
 		// Act
-		IRenderedComponent<Create> cut = ComponentUnderTest();
+		var cut = ComponentUnderTest();
 
 		// Assert
 		cut.MarkupMatches(expectedHtml);
@@ -94,13 +90,12 @@ public class GivenAnCreatePage : TestContext
 		SetAuthenticationAndAuthorization(true, true);
 
 		// Act
-		IRenderedComponent<Create> cut = ComponentUnderTest();
+		var cut = ComponentUnderTest();
 
 		cut.Find("#title").Change(_expectedPost.Title);
 		cut.Find("#url").Change(_expectedPost.Url);
 		cut.Find("#description").Change(_expectedPost.Description);
 		cut.Find("#content").Change(_expectedPost.Content);
-		cut.Find("#author").Change(_expectedPost.Author);
 		cut.Find("#date").Change(DateTime.Now);
 		cut.Find("#submit").Click();
 
@@ -128,7 +123,6 @@ public class GivenAnCreatePage : TestContext
 			    <li class="validation-message">The Title field is required.</li>
 			    <li class="validation-message">The Description field is required.</li>
 			    <li class="validation-message">The Content field is required.</li>
-			    <li class="validation-message">The Author field is required.</li>
 			  </ul>
 			  <div class="form-group mb-2">
 			    <label for="title">Title</label>
@@ -159,16 +153,11 @@ public class GivenAnCreatePage : TestContext
 			    <div id="preview" class="form-group mb-2"></div>
 			  </div>
 			  <div class="form-group mb-2">
-			    <label for="author">Author</label>
-			    <input id="author" aria-invalid="true" class="form-control invalid" value=""  >
-			    <div class="validation-message">The Author field is required.</div>
-			  </div>
-			  <div class="form-group mb-2">
 			    <label for="date">Date Created</label>
 			    <input id="date" type="date" class="form-control valid" value:ignore  >
 			  </div>
 			  <div class="form-check mb-2">
-			    <input id="isPublished" type="checkbox" class="form-check-input valid" checked=""  >
+			    <input id="isPublished" type="checkbox" class="form-check-input valid">
 			    <label for="isPublished">Publish</label>
 			  </div>
 			  <button id="submit" type="submit" class="btn btn-primary">Create</button>
@@ -180,7 +169,7 @@ public class GivenAnCreatePage : TestContext
 		SetAuthenticationAndAuthorization(true, true);
 
 		// Act
-		IRenderedComponent<Create> cut = ComponentUnderTest();
+		var cut = ComponentUnderTest();
 
 		cut.Find("#submit").Click();
 
@@ -201,7 +190,7 @@ public class GivenAnCreatePage : TestContext
 
 	private void SetAuthenticationAndAuthorization(bool isAdmin, bool isAuth)
 	{
-		TestAuthorizationContext authContext = this.AddTestAuthorization();
+		var authContext = this.AddTestAuthorization();
 
 		if (isAuth)
 		{

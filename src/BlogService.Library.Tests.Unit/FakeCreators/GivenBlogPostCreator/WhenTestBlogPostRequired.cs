@@ -7,7 +7,7 @@
 // Project Name :  BlogService.Library.Tests.Unit
 // =============================================
 
-namespace BlogService.Library.Tests.Unit.FakeCreators.GivenBlogPostCreator;
+namespace BlogService.Library.FakeCreators.GivenBlogPostCreator;
 
 [ExcludeFromCodeCoverage]
 public class WhenTestBlogPostRequired
@@ -24,6 +24,7 @@ public class WhenTestBlogPostRequired
 		// Assert
 		result.Should().BeEquivalentTo(expected,
 			options => options
+				.Excluding(t => t.Author.Id)
 				.Excluding(t => t.Created)
 				.Excluding(t => t.Updated));
 	}
@@ -42,6 +43,7 @@ public class WhenTestBlogPostRequired
 		result.Should().BeEquivalentTo(expected,
 			options => options
 				.Excluding(t => t.Id)
+				.Excluding(t => t.Author.Id)
 				.Excluding(t => t.Created)
 				.Excluding(t => t.Updated));
 	}
@@ -71,6 +73,8 @@ public class WhenTestBlogPostRequired
 		// Assert
 		result.Should().BeEquivalentTo(expected,
 			options => options
+				.Excluding(t => t.Author.Id)
+				.Excluding(t => t.ArchivedBy.Id)
 				.Excluding(t => t.Created)
 				.Excluding(t => t.Updated));
 	}
@@ -90,6 +94,8 @@ public class WhenTestBlogPostRequired
 		result.Should().BeEquivalentTo(expected,
 			options => options
 				.Excluding(t => t.Id)
+				.Excluding(t => t.Author.Id)
+				.Excluding(t => t.ArchivedBy.Id)
 				.Excluding(t => t.Created)
 				.Excluding(t => t.Updated));
 	}

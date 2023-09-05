@@ -7,6 +7,8 @@
 // Project Name :  BlogService.UI
 // =============================================
 
+using BlogService.Library.FakerCreators;
+
 namespace BlogService.UI.Pages;
 
 [UsedImplicitly]
@@ -46,7 +48,7 @@ public partial class SampleData
 
 		BlogPost post = new()
 		{
-			Author = "mpaulosky",
+			Author = BasicUserCreator.GetNewBasicUser(true),
 			Content = "Test Content",
 			Description = "Test Description",
 			Title = "Test Title",
