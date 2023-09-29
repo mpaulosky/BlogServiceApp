@@ -13,17 +13,17 @@
 		<PackageReference Include="Bogus" Version="34.0.2" />
 		<PackageReference Include="FluentAssertions" Version="6.12.0" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.7.2" />
-		<PackageReference Include="Microsoft.Playwright" Version="1.37.1" />
-		<PackageReference Include="Testcontainers.MongoDb" Version="3.4.0" />
-		<PackageReference Include="xunit" Version="2.5.0" />
-		<PackageReference Include="xunit.runner.visualstudio" Version="2.5.0">
+		<PackageReference Include="Microsoft.Playwright" Version="1.38.0" />
+		<PackageReference Include="Testcontainers.MongoDb" Version="3.5.0" />
+		<PackageReference Include="xunit" Version="2.5.1" />
+		<PackageReference Include="xunit.runner.visualstudio" Version="2.5.1">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="C3D.Extensions.Playwright.AspNetCore.Xunit" Version="0.1.26" />
+		<PackageReference Include="C3D.Extensions.Playwright.AspNetCore.Xunit" Version="0.1.30" />
 		<PackageReference Include="Xunit.SkippableFact" Version="1.4.13" />
 		<PackageReference Include="idunno.Authentication.Basic" Version="2.3.1" />
 	</ItemGroup>
@@ -31,6 +31,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\BlogService.Library\BlogService.Library.csproj" />
 		<ProjectReference Include="..\BlogService.UI\BlogService.UI.csproj" />
+		<ProjectReference Include="..\TestingSupport.Library\TestingSupport.Library.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
