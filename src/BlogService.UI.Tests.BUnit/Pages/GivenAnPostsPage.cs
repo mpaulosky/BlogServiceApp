@@ -7,7 +7,7 @@
 // Project Name :  BlogService.UI.Tests.BUnit
 // =============================================
 
-namespace BlogService.UI.Tests.BUnit.Pages;
+namespace BlogService.UI.Pages;
 
 [ExcludeFromCodeCoverage]
 public class GivenAnPostsPage : TestContext
@@ -19,7 +19,7 @@ public class GivenAnPostsPage : TestContext
 
 	private IRenderedComponent<Posts> ComponentUnderTest(string? url)
 	{
-		IRenderedComponent<Posts> component = RenderComponent<Posts>(parameter =>
+		var component = RenderComponent<Posts>(parameter =>
 		{
 			parameter.Add(p => p.Url, url);
 		});
@@ -101,7 +101,7 @@ public class GivenAnPostsPage : TestContext
 
 	private void SetAuthenticationAndAuthorization(bool isAdmin, bool isAuth)
 	{
-		TestAuthorizationContext authContext = this.AddTestAuthorization();
+		var authContext = this.AddTestAuthorization();
 
 		if (isAuth)
 		{

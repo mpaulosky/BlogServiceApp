@@ -18,22 +18,6 @@ namespace BlogService.UI.Fixtures;
 [ExcludeFromCodeCoverage]
 public static class FixtureExtensions
 {
-	public static void AddNewMongoDbSettingsSectionToConfig(this IHostBuilder builder, IDatabaseSettings settings)
-	{
-		builder.ConfigureAppConfiguration(configuration =>
-		{
-			// Add connection section to the configuration
-
-			var testConfiguration = new Dictionary<string, string>
-			{
-				{ "MongoDbSettings:ConnectionStrings", settings.ConnectionStrings },
-				{ "MongoDbSettings:DatabaseName", settings.DatabaseName }
-			};
-
-			configuration.AddInMemoryCollection(testConfiguration!);
-		});
-	}
-
 	/// <summary>
 	///   Add the file provided from the test project to the host app configuration
 	/// </summary>

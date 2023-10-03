@@ -36,14 +36,12 @@ public class IntegrationTestFactory : WebApplicationFactory<IAppMarker>, IAsyncL
 	{
 		builder.UseEnvironment("Development");
 
-		builder.UseUniqueDb(DbSettings);
+		builder.AddTestInMemoryMongoDbSection(DbSettings);
+
+		builder.UpdateDatabaseServices(DbSettings);
 
 		builder.ConfigureTestServices(services =>
 		{
-			services.CleanupServices();
-
-			services.ReplaceRemovedServices(DbSettings);
-
 			using ServiceProvider serviceProvider = services.BuildServiceProvider();
 
 			DbContext = serviceProvider.GetRequiredService<IMongoDbContextFactory>();

@@ -14,7 +14,7 @@ public class GivenAnCreatePage : TestContext
 {
 	private readonly Mock<IBlogPostData> _blogPostDataMock = new();
 	private readonly Mock<IUserData> _userDataMock = new();
-	private User _expectedUser = new();
+	private readonly User _expectedUser = new();
 	private BlogPost? _expectedPost = new();
 
 	private IRenderedComponent<Create> ComponentUnderTest()

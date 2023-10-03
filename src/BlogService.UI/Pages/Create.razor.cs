@@ -33,7 +33,7 @@ public partial class Create
 			Url = _newBlogPost.Url,
 			Description = _newBlogPost.Description,
 			Content = _newBlogPost.Content,
-			Author = _newBlogPost.Author,
+			Author = new BasicUser(_loggedInUser),
 			Created = _newBlogPost.Created,
 			IsPublished = _newBlogPost.IsPublished,
 			Image = _newBlogPost.Image

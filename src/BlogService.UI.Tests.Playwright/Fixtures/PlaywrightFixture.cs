@@ -7,6 +7,8 @@
 // Project Name :  BlogService.UI.Tests.Playwright
 // =============================================
 
+using TestingSupport.Library.Fixtures;
+
 namespace BlogService.UI.Fixtures;
 
 /// <summary>
@@ -18,6 +20,7 @@ namespace BlogService.UI.Fixtures;
 ///   </p>
 /// </summary>
 [ExcludeFromCodeCoverage]
+[UsedImplicitly]
 public class PlaywrightFixture : PlaywrightFixture<AssemblyClassLocator>
 {
 	public PlaywrightFixture(IMessageSink output) : base(output)
@@ -57,7 +60,7 @@ public class PlaywrightFixture : PlaywrightFixture<AssemblyClassLocator>
 	protected override IHost CreateHost(IHostBuilder builder)
 	{
 		builder.AddTestConfiguration();
-		builder.AddNewMongoDbSettingsSectionToConfig(DatabaseSettings);
+		builder.AddTestInMemoryMongoDbSection(DatabaseSettings);
 		builder.UpdateDatabaseServices(DatabaseSettings);
 
 		var host = base.CreateHost(builder);
