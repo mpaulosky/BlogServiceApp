@@ -1,16 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
 	<PropertyGroup>
-		<TargetFramework>net7.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<UserSecretsId>49c62256-48d5-4902-8039-78e5d21277e0</UserSecretsId>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="JetBrains.Annotations" Version="2023.2.0" />
+		<PackageReference Include="JetBrains.Annotations" Version="2023.3.0" />
 		<PackageReference Include="Markdig" Version="0.33.0" />
-		<PackageReference Include="Microsoft.Identity.Web" Version="2.15.1" />
-		<PackageReference Include="Microsoft.Identity.Web.UI" Version="2.15.1" />
+		<PackageReference Include="Microsoft.Identity.Web" Version="2.15.3" />
+		<PackageReference Include="Microsoft.Identity.Web.UI" Version="2.15.3" />
 	</ItemGroup>
 
 	<ItemGroup>
