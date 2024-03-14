@@ -14,7 +14,7 @@ namespace BlogService.Library.DataAccess;
 /// </summary>
 public class MongoBlogPostData : IBlogPostData
 {
-	private readonly IMongoCollection<BlogPost> _posts;
+	private static readonly IMongoCollection<BlogPost> Posts;
 
 	/// <summary>
 	///   MongoBlogPostData constructor
@@ -27,7 +27,7 @@ public class MongoBlogPostData : IBlogPostData
 
 		string collectionName = GetCollectionName(nameof(BlogPost));
 
-		_posts = context.GetCollection<BlogPost>(collectionName);
+		Posts = context.GetCollection<BlogPost>(collectionName);
 	}
 
 	/// <summary>
@@ -35,10 +35,10 @@ public class MongoBlogPostData : IBlogPostData
 	/// </summary>
 	/// <param name="post">The BlogPost object to be archived</param>
 	/// <returns>A task placeholder for the async operation</returns>
-	public Task ArchiveAsync(BlogPost post)
+	public async Task ArchiveAsync(BlogPost post)
 	{
 		var filter = Builders<BlogPost>.Filter.Eq("Id", post.Id);
-		return _posts.ReplaceOneAsync(filter, post, new ReplaceOptions { IsUpsert = true });
+		await Posts.ReplaceOneAsync(filter, post, new ReplaceOptions { IsUpsert = true });
 	}
 
 	/// <summary>
@@ -48,7 +48,7 @@ public class MongoBlogPostData : IBlogPostData
 	/// <returns>A task placeholder for the async operation</returns>
 	public Task CreateAsync(BlogPost post)
 	{
-		return _posts.InsertOneAsync(post);
+		return Posts.InsertOneAsync(post);
 	}
 
 	/// <summary>
@@ -57,7 +57,7 @@ public class MongoBlogPostData : IBlogPostData
 	/// <returns>A List of all the BlogPost objects</returns>
 	public async Task<List<BlogPost>> GetAllAsync()
 	{
-		var results = await _posts.FindAsync(_ => true);
+		var results = await Posts.FindAsync(_ => true);
 
 		return results.ToList();
 	}
@@ -69,7 +69,7 @@ public class MongoBlogPostData : IBlogPostData
 	/// <returns>The BlogPost corresponding to the URL provided or null if it doesn't exist</returns>
 	public async Task<BlogPost> GetByUrlAsync(string url)
 	{
-		var results = await _posts.FindAsync(u => u.Url == url);
+		var results = await Posts.FindAsync(u => u.Url == url);
 		return results.FirstOrDefault();
 	}
 
@@ -81,6 +81,6 @@ public class MongoBlogPostData : IBlogPostData
 	public Task UpdateAsync(BlogPost post)
 	{
 		var filter = Builders<BlogPost>.Filter.Eq("Id", post.Id);
-		return _posts.ReplaceOneAsync(filter, post, new ReplaceOptions { IsUpsert = true });
+		return Posts.ReplaceOneAsync(filter, post, new ReplaceOptions { IsUpsert = true });
 	}
 }

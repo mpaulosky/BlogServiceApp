@@ -58,7 +58,7 @@ public class GivenAnCreatePage : TestContext
 			  </div>
 			  <div class="form-group mb-2">
 			    <label for="date">Date Created</label>
-			    <input id="date" type="date" name="_newBlogPost.Created" class="form-control valid" value="2023-11-15"  >
+			    <input id="date" type="date" name="_newBlogPost.Created" class="form-control valid" value:ignore  >
 			  </div>
 			  <div class="form-check mb-2">
 			    <input id="isPublished" type="checkbox" name="_newBlogPost.IsPublished" class="form-check-input valid" value="True"  >
@@ -153,8 +153,8 @@ public class GivenAnCreatePage : TestContext
 			    <div id="preview" class="form-group mb-2"></div>
 			  </div>
 			  <div class="form-group mb-2">
-			    <label for="date">Date Created</label>
-			    <input id="date" type="date" name="_newBlogPost.Created" class="form-control valid" value="2023-11-15"  >
+			    <label diff:ignore for="date">Date Created</label>
+			    <input id="date" type="date" name="_newBlogPost.Created" class="form-control valid" value:ignore  >
 			  </div>
 			  <div class="form-check mb-2">
 			    <input id="isPublished" type="checkbox" name="_newBlogPost.IsPublished" class="form-check-input valid" value="True"  >
